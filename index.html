@@ -59,7 +59,7 @@
 
 <body>
     <!-- Welcome Modal -->
-    <div id="welcomeModal" class="modal-overlay active">
+    <div id="welcomeModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
                 <h1>🎵✨ Sound to Sight ✨🎵</h1>
@@ -174,19 +174,37 @@
 
     <!-- Floating Controls (Bottom-Right) -->
     <div class="floating-controls bottom-right">
-        <button id="menuToggle">⚙️</button>
+        <button id="menuToggle" class="menu-toggle-btn">
+            <span class="toggle-icon">▼</span>
+            <span class="toggle-text">Controls</span>
+        </button>
 
         <div id="menuPanel" class="menu-panel collapsed">
             <div class="visualizer-selector">
-                <label for="visualizerSelect">🎨 Visual:</label>
+                <label for="visualizerSelect">Visual Style:</label>
                 <select id="visualizerSelect"></select>
             </div>
 
-            <button id="playPauseBtn" disabled>▶️</button>
-            <button id="stopBtn" disabled>⏹️</button>
-            <button id="micBtn">🎤</button>
-            <button id="fileSelectBtn">📁</button>
-            <button id="imageUploadBtn" style="display:none;">🖼️</button>
+            <button id="playPauseBtn" class="control-btn" disabled>
+                <span class="btn-icon">▶</span>
+                <span class="btn-label">Play</span>
+            </button>
+            <button id="stopBtn" class="control-btn" disabled>
+                <span class="btn-icon">⏹</span>
+                <span class="btn-label">Stop</span>
+            </button>
+            <button id="fileSelectBtn" class="control-btn">
+                <span class="btn-icon">📁</span>
+                <span class="btn-label">Load File</span>
+            </button>
+            <button id="micBtn" class="control-btn">
+                <span class="btn-icon">🎤</span>
+                <span class="btn-label">Microphone</span>
+            </button>
+            <button id="imageUploadBtn" class="control-btn" style="display:none;">
+                <span class="btn-icon">🖼️</span>
+                <span class="btn-label">Upload Image</span>
+            </button>
         </div>
     </div>
 
@@ -194,10 +212,11 @@
     <div class="drop-overlay" id="dropOverlay">
         <div class="drop-content">
             <div class="upload-icon">🎵</div>
-            <h2>Drop your audio file</h2>
-            <p>or click to browse</p>
+            <h2>Drop your audio file here</h2>
+            <p>or click to browse your files</p>
             <div class="alternative-option">
-                <p>🎤 Use the microphone button below</p>
+                <p>💡 <strong>Tip:</strong> Use the <strong>"Load File"</strong> button in the bottom-right controls</p>
+                <p>🎤 Or try the <strong>"Microphone"</strong> button to use live audio</p>
             </div>
         </div>
     </div>
@@ -285,9 +304,12 @@
             const hasAcceptedCurrentVersion = acceptedVersion === TERMS_VERSION;
 
             if (hasAcceptedCurrentVersion) {
-                modal.classList.remove('active');
+                // User has already accepted, keep modal hidden
                 return;
             }
+
+            // User hasn't accepted (or needs to re-accept), show modal
+            modal.classList.add('active');
 
             // If they accepted an older version, show message about updated terms
             if (acceptedVersion && acceptedVersion !== TERMS_VERSION) {
@@ -340,9 +362,12 @@
         // Menu Toggle
         const toggle = document.getElementById('menuToggle');
         const menu = document.querySelector('.menu-panel');
+        const toggleIcon = toggle.querySelector('.toggle-icon');
 
         toggle.addEventListener('click', () => {
-            menu.classList.toggle('collapsed');
+            const isCollapsed = menu.classList.toggle('collapsed');
+            // Update icon: down arrow when collapsed (closed), up arrow when expanded (open)
+            toggleIcon.textContent = isCollapsed ? '▼' : '▲';
         });
     </script>
 </body>
