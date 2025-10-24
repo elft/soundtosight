@@ -188,31 +188,43 @@
                 </div>
             </div>
 
-            <div class="visualizer-selector">
-                <label for="visualizerSelect">Visual Style:</label>
-                <select id="visualizerSelect"></select>
+            <!-- Visual Selector Section -->
+            <div class="section-divider">
+                <div class="section-label">Visual</div>
+                <div class="visualizer-selector">
+                    <select id="visualizerSelect"></select>
+                </div>
             </div>
 
-            <button id="playPauseBtn" class="control-btn" disabled>
-                <span class="btn-icon">▶</span>
-                <span class="btn-label">Play</span>
-            </button>
-            <button id="stopBtn" class="control-btn" disabled>
-                <span class="btn-icon">⏹</span>
-                <span class="btn-label">Stop</span>
-            </button>
-            <button id="fileSelectBtn" class="control-btn">
-                <span class="btn-icon">📁</span>
-                <span class="btn-label">Load File</span>
-            </button>
-            <button id="micBtn" class="control-btn">
-                <span class="btn-icon">🎤</span>
-                <span class="btn-label">Microphone</span>
-            </button>
-            <button id="imageUploadBtn" class="control-btn" style="display:none;">
-                <span class="btn-icon">🖼️</span>
-                <span class="btn-label">Upload Image</span>
-            </button>
+            <!-- Audio Controls Section -->
+            <div class="section-divider">
+                <div class="section-label">Audio Controls</div>
+                <button id="playPauseBtn" class="control-btn" disabled>
+                    <span class="btn-icon">▶</span>
+                    <span class="btn-label">Play</span>
+                </button>
+                <button id="stopBtn" class="control-btn" disabled>
+                    <span class="btn-icon">⏹</span>
+                    <span class="btn-label">Stop</span>
+                </button>
+            </div>
+
+            <!-- Audio Source Section -->
+            <div class="section-divider">
+                <div class="section-label">Audio Source</div>
+                <button id="fileSelectBtn" class="control-btn">
+                    <span class="btn-icon">📁</span>
+                    <span class="btn-label">Load MP3</span>
+                </button>
+                <button id="micBtn" class="control-btn">
+                    <span class="btn-icon">🎤</span>
+                    <span class="btn-label">Microphone</span>
+                </button>
+                <button id="imageUploadBtn" class="control-btn" style="display:none;">
+                    <span class="btn-icon">🖼️</span>
+                    <span class="btn-label">Upload Image</span>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -223,7 +235,7 @@
             <h2>Drop your audio file here</h2>
             <p>or click to browse your files</p>
             <div class="alternative-option">
-                <p>💡 <strong>Tip:</strong> Use the <strong>"Load File"</strong> button in the bottom-right controls</p>
+                <p>💡 <strong>Tip:</strong> Use the <strong>"Load MP3"</strong> button in the bottom-right controls</p>
                 <p>🎤 Or try the <strong>"Microphone"</strong> button to use live audio</p>
             </div>
         </div>
@@ -276,7 +288,8 @@
                             window.VISUALIZERS_MANIFEST.forEach(vizInfo => {
                                 const option = document.createElement('option');
                                 option.value = vizInfo.name;
-                                option.textContent = vizInfo.name;
+                                // Use displayName if available, otherwise remove "Visualizer" suffix
+                                option.textContent = vizInfo.displayName || vizInfo.name.replace(/Visualizer$/, '');
                                 option.title = vizInfo.description || '';
                                 select.appendChild(option);
                             });
