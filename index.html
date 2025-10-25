@@ -58,119 +58,7 @@
 </head>
 
 <body>
-    <!-- Welcome Modal -->
-    <div id="welcomeModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1>🎵✨ Sound to Sight ✨🎵</h1>
-                <p class="tagline">Where Music Becomes Art</p>
-            </div>
-
-            <div class="modal-body">
-                <section class="story-section">
-                    <h2>Experience Music with All Your Senses</h2>
-                    <p>Music has always been a journey for the ears, but what if you could <em>see</em> the rhythm,
-                        <em>witness</em> the bass, and <em>watch</em> the melody dance before your eyes?</p>
-
-                    <p>Sound to Sight transforms your favorite music into a living, breathing visual experience. Each
-                        beat becomes a pulse of light, every frequency a wave of color, and the entire composition a
-                        symphony for your eyes.</p>
-
-                    <p class="highlight">When sound and sight unite, music transcends the auditory — it becomes
-                        <strong>immersive art</strong>.</p>
-                </section>
-
-                <section class="warning-section">
-                    <h2>⚠️ Important Health & Safety Warnings</h2>
-                    <div class="warning-box">
-                        <p><strong>Photosensitive Seizure Warning:</strong> This application contains flashing lights,
-                            rapid color changes, and strobing visual effects that may trigger seizures in people with
-                            photosensitive epilepsy. If you or anyone in your family has an epileptic condition, consult
-                            a physician before use.</p>
-
-                        <p><strong>General Health Warnings:</strong></p>
-                        <ul>
-                            <li>May cause eye strain, headaches, or dizziness with prolonged use</li>
-                            <li>Take regular breaks (recommended 15 minutes per hour)</li>
-                            <li>Use in a well-lit room and maintain distance from screen</li>
-                            <li>Reduce volume and visual intensity if you feel uncomfortable</li>
-                            <li>Not recommended for individuals with migraines or motion sensitivity</li>
-                        </ul>
-
-                        <p><strong>Stop immediately if you experience:</strong> Dizziness, altered vision, eye or muscle
-                            twitching, loss of awareness, disorientation, seizures, or any involuntary movements.</p>
-                    </div>
-                </section>
-
-                <section class="terms-section">
-                    <h2>📜 Terms of Use & Disclaimer</h2>
-                    <div class="terms-box">
-                        <p><strong>By clicking "I Agree" below, you acknowledge and accept the following:</strong></p>
-
-                        <ol>
-                            <li><strong>Use at Your Own Risk:</strong> This application is provided "as is" without
-                                warranties of any kind. You use Sound to Sight entirely at your own risk.</li>
-
-                            <li><strong>No Liability:</strong> The creator(s) and operator(s) of Sound to Sight shall
-                                not be held liable for any direct, indirect, incidental, consequential, or punitive
-                                damages arising from your use of this application, including but not limited to:
-                                <ul>
-                                    <li>Health issues (seizures, eye strain, headaches, dizziness, etc.)</li>
-                                    <li>Equipment damage or data loss</li>
-                                    <li>Hearing damage from excessive volume</li>
-                                    <li>Any other physical, mental, or financial harm</li>
-                                </ul>
-                            </li>
-
-                            <li><strong>Age Restriction:</strong> You must be 13 years or older to use this application.
-                                If under 18, you must have parental consent.</li>
-
-                            <li><strong>Privacy:</strong> Audio files processed by this application remain on your
-                                device. We do not collect, store, or transmit your audio files or personal data.</li>
-
-                            <li><strong>Copyright:</strong> You are responsible for ensuring you have the legal right to
-                                use any audio files you upload. Sound to Sight is for personal, non-commercial use only.
-                            </li>
-
-                            <li><strong>Browser Compatibility:</strong> This application requires a modern web browser
-                                with JavaScript and Web Audio API support. Performance may vary by device.</li>
-
-                            <li><strong>Modifications:</strong> These terms may be updated at any time without notice.
-                                Continued use constitutes acceptance of any changes.</li>
-
-                            <li><strong>Indemnification:</strong> You agree to indemnify and hold harmless the
-                                creator(s) of Sound to Sight from any claims, damages, or expenses arising from your use
-                                of this application.</li>
-                        </ol>
-
-                        <p class="disclaimer-footer"><strong>DISCLAIMER:</strong> This is an experimental web
-                            application. The creator(s) make no guarantees about functionality, safety, or fitness for
-                            any particular purpose. <strong>USE AT YOUR OWN RISK.</strong></p>
-                    </div>
-                </section>
-
-                <div class="consent-checkbox">
-                    <label>
-                        <input type="checkbox" id="healthAcknowledgement">
-                        <span>I have read and understand the health warnings</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" id="termsAcknowledgement">
-                        <span>I accept the Terms of Use and agree not to hold the creator liable</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" id="ageAcknowledgement">
-                        <span>I am 13 years or older (and have parental consent if under 18)</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button id="declineBtn" class="btn-secondary">Decline</button>
-                <button id="agreeBtn" class="btn-primary" disabled>I Agree - Enter Experience</button>
-            </div>
-        </div>
-    </div>
+    <div id="welcomeModalContainer"></div>
 
     <!-- Floating Controls (Bottom-Right) -->
     <div class="floating-controls bottom-right">
@@ -182,6 +70,7 @@
         <div id="menuPanel" class="menu-panel collapsed">
             <!-- Now Playing Info -->
             <div id="nowPlaying" class="now-playing" style="display:none;">
+                <div class="section-label" style="font-weight: bold; font-size: 1.1em;">Now Playing</div>
                 <div class="track-info">
                     <div class="track-title" id="trackTitle">Unknown Track</div>
                     <div class="track-artist" id="trackArtist">Unknown Artist</div>
@@ -189,7 +78,7 @@
             </div>
 
             <!-- Visual Selector Section -->
-            <div class="section-divider">
+            <div>
                 <div class="section-label">Visual</div>
                 <div class="visualizer-selector">
                     <select id="visualizerSelect"></select>
@@ -224,7 +113,55 @@
                     <span class="btn-icon">🖼️</span>
                     <span class="btn-label">Upload Image</span>
                 </button>
+                <button id="showHelpOverlayBtn" class="control-btn">
+                    <span class="btn-icon">❔</span>
+                    <span class="btn-label">Getting Started</span>
+                </button>
             </div>
+            <!-- Feedback Section -->
+            <div class="section-divider">
+                <div class="section-label">Feedback</div>
+                <a href="https://github.com/elft/soundtosight/issues/new?labels=Cool+Visual+Idea" target="_blank" class="control-btn" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+                    <span class="btn-icon">💡</span>
+                    <span class="btn-label">Got feedback? OR want to bring your visual to life?</span>
+                </a>
+            </div>
+    </div>
+    </div>
+
+    <!-- Getting Started Overlay -->
+    <div class="getting-started-overlay" id="gettingStartedOverlay">
+        <div class="getting-started-card">
+            <div class="getting-started-header">
+                <h2>Bring your audio to life</h2>
+                <p class="getting-started-tagline">Choose how you want to start exploring the visuals.</p>
+            </div>
+            <div class="getting-started-actions">
+                <button id="startDemoBtn" class="onboard-btn primary">
+                    <span class="btn-icon">🎧</span>
+                    <span class="btn-text">
+                        <strong>Play Demo Track</strong>
+                        <small>See the visualizer in action instantly</small>
+                    </span>
+                </button>
+                <button id="startUploadBtn" class="onboard-btn">
+                    <span class="btn-icon">📁</span>
+                    <span class="btn-text">
+                        <strong>Upload Your Audio</strong>
+                        <small>Pick an MP3, WAV, or drop a file anywhere</small>
+                    </span>
+                </button>
+                <button id="startMicBtn" class="onboard-btn">
+                    <span class="btn-icon">🎤</span>
+                    <span class="btn-text">
+                        <strong>Use Microphone</strong>
+                        <small>Jam live with visuals that react instantly</small>
+                    </span>
+                </button>
+            </div>
+            <p class="getting-started-hint">
+                Tip: Controls live in the bottom-right corner. You can revisit this overlay anytime from the menu.
+            </p>
         </div>
     </div>
 
@@ -248,149 +185,13 @@
     <!-- Load scripts in order -->
     <script src="AudioManager.js"></script>
     <script src="BaseVisualizer.js"></script>
-    <!-- Visualizers manifest -->
+    <script src="ShapeAnimator.js"></script>
+    <script src="scripts/domUtils.js"></script>
     <script src="config/visualizers-manifest.js"></script>
-    <!-- Dynamic visualizer loader -->
-    <script>
-        // Dynamically load all visualizer scripts from manifest
-        (function loadVisualizers() {
-            if (!window.VISUALIZERS_MANIFEST) {
-                console.error('Visualizers manifest not loaded!');
-                return;
-            }
-
-            // Track loading state
-            window.visualizersLoaded = false;
-            let scriptsToLoad = window.VISUALIZERS_MANIFEST.length;
-            let scriptsLoaded = 0;
-
-            // Load each visualizer script
-            window.VISUALIZERS_MANIFEST.forEach(viz => {
-                const script = document.createElement('script');
-                script.src = `visualizers/${viz.file}`;
-                script.async = false; // Ensure sequential loading
-
-                script.onload = () => {
-                    scriptsLoaded++;
-                    console.log(`Loaded visualizer: ${viz.name} (${scriptsLoaded}/${scriptsToLoad})`);
-
-                    if (scriptsLoaded === scriptsToLoad) {
-                        window.visualizersLoaded = true;
-                        console.log('All visualizers loaded!');
-
-                        // Dispatch custom event to signal visualizers are ready
-                        window.dispatchEvent(new Event('visualizersReady'));
-
-                        // Populate dropdown
-                        const select = document.getElementById('visualizerSelect');
-                        if (select) {
-                            select.innerHTML = '';
-                            window.VISUALIZERS_MANIFEST.forEach(vizInfo => {
-                                const option = document.createElement('option');
-                                option.value = vizInfo.name;
-                                // Use displayName if available, otherwise remove "Visualizer" suffix
-                                option.textContent = vizInfo.displayName || vizInfo.name.replace(/Visualizer$/, '');
-                                option.title = vizInfo.description || '';
-                                select.appendChild(option);
-                            });
-                        }
-                    }
-                };
-
-                script.onerror = () => {
-                    console.error(`Failed to load visualizer: ${viz.name}`);
-                };
-
-                document.body.appendChild(script);
-            });
-        })();
-    </script>
+    <script src="scripts/visualizerLoader.js"></script>
     <script src="audioVisualizer.js"></script>
-    <script>
-        // Welcome Modal Logic
-        (function initWelcomeModal() {
-            // ⚠️ IMPORTANT: Increment this version number whenever terms/warnings change
-            // This will force users to re-accept the updated terms
-            const TERMS_VERSION = '1.0.1';
-
-            const modal = document.getElementById('welcomeModal');
-            const agreeBtn = document.getElementById('agreeBtn');
-            const declineBtn = document.getElementById('declineBtn');
-            const healthCheck = document.getElementById('healthAcknowledgement');
-            const termsCheck = document.getElementById('termsAcknowledgement');
-            const ageCheck = document.getElementById('ageAcknowledgement');
-
-            // Check if user has already accepted this version of the terms
-            const acceptedVersion = localStorage.getItem('soundToSightTermsVersion');
-            const hasAcceptedCurrentVersion = acceptedVersion === TERMS_VERSION;
-
-            if (hasAcceptedCurrentVersion) {
-                // User has already accepted, keep modal hidden
-                return;
-            }
-
-            // User hasn't accepted (or needs to re-accept), show modal
-            modal.classList.add('active');
-
-            // If they accepted an older version, show message about updated terms
-            if (acceptedVersion && acceptedVersion !== TERMS_VERSION) {
-                const modalBody = modal.querySelector('.modal-body');
-                const updateNotice = document.createElement('div');
-                updateNotice.className = 'terms-update-notice';
-                updateNotice.innerHTML = `
-                    <h2>⚠️ Terms Have Been Updated</h2>
-                    <p><strong>Our terms and warnings have been updated since you last visited.</strong></p>
-                    <p>Please review the changes below and re-accept to continue.</p>
-                    <p class="version-info">Previous version: ${acceptedVersion} → Current version: ${TERMS_VERSION}</p>
-                `;
-                modalBody.insertBefore(updateNotice, modalBody.firstChild);
-            }
-
-            // Enable agree button only when all checkboxes are checked
-            function updateAgreeButton() {
-                const allChecked = healthCheck.checked && termsCheck.checked && ageCheck.checked;
-                agreeBtn.disabled = !allChecked;
-            }
-
-            healthCheck.addEventListener('change', updateAgreeButton);
-            termsCheck.addEventListener('change', updateAgreeButton);
-            ageCheck.addEventListener('change', updateAgreeButton);
-
-            // Handle agree
-            agreeBtn.addEventListener('click', () => {
-                // Store the version they accepted
-                localStorage.setItem('soundToSightTermsVersion', TERMS_VERSION);
-                // Keep legacy flag for backwards compatibility
-                localStorage.setItem('soundToSightAccepted', 'true');
-                modal.classList.remove('active');
-                // Small delay before showing drop overlay for smooth transition
-                setTimeout(() => {
-                    if (window.soundToSight) {
-                        window.soundToSight.showDropOverlay();
-                    }
-                }, 300);
-            });
-
-            // Handle decline
-            declineBtn.addEventListener('click', () => {
-                const confirmDecline = confirm('Are you sure? You will be redirected away from this application.');
-                if (confirmDecline) {
-                    window.location.href = 'about:blank';
-                }
-            });
-        })();
-
-        // Menu Toggle
-        const toggle = document.getElementById('menuToggle');
-        const menu = document.querySelector('.menu-panel');
-        const toggleIcon = toggle.querySelector('.toggle-icon');
-
-        toggle.addEventListener('click', () => {
-            const isCollapsed = menu.classList.toggle('collapsed');
-            // Update icon: down arrow when collapsed (closed), up arrow when expanded (open)
-            toggleIcon.textContent = isCollapsed ? '▼' : '▲';
-        });
-    </script>
+    <script src="scripts/termsModal.js"></script>
+    <script src="scripts/menuToggle.js"></script>
 </body>
 
 </html>
