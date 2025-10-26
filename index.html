@@ -6,41 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Sound to Sight - Audio Visualizer | Transform Music into Visual Art</title>
+    <title>VVavy - Audio Visualizer | Transform Music into Visual Art</title>
     <meta name="description"
-        content="Experience music like never before with Sound to Sight - a free, real-time audio visualizer that transforms sound into mesmerizing visual art. Upload MP3s or use your microphone for stunning audio-reactive visuals.">
+        content="Experience music like never before with VVavy - a free, real-time audio visualizer that transforms sound into mesmerizing visual art. Upload MP3s or use your microphone for stunning audio-reactive visuals.">
     <meta name="keywords"
-        content="audio visualizer, music visualizer, sound to sight, audio reactive, visual music, mp3 visualizer, sound visualization, music to visual, audio spectrum analyzer, real-time audio visualization, web audio visualizer, free music visualizer">
-    <meta name="author" content="Sound to Sight">
+        content="audio visualizer, music visualizer, vvavy, audio reactive, visual music, mp3 visualizer, sound visualization, music to visual, audio spectrum analyzer, real-time audio visualization, web audio visualizer, free music visualizer">
+    <meta name="author" content="Tyler E">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="Sound to Sight - Transform Music into Visual Art">
+    <meta property="og:title" content="VVavy - Transform Music into Visual Art">
     <meta property="og:description"
-        content="Free real-time audio visualizer that transforms your music into mesmerizing visual experiences. Upload MP3s or use your microphone.">
+        content="Free real time audio visualizer that transforms your music into mesmerizing visual experiences. Upload audio files, search SoundCloud or use your microphone.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://github.com/elft/soundtosight">
-    <meta property="og:image" content="https://github.com/elft/soundtosight/images/preview.png">
+    <meta property="og:url" content="https://vvavy.io">
+    <meta property="og:image" content="https://vvavy.io/images/preview.png">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sound to Sight - Audio Visualizer">
+    <meta name="twitter:title" content="Vvavy - Audio Visualizer">
     <meta name="twitter:description"
         content="Transform your music into mesmerizing visual art with real-time audio visualization">
-    <meta name="twitter:image" content="https://github.com/elft/soundtosight">
+    <meta name="twitter:image" content="https://vvavy.io">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://github.com/elft/soundtosight">
+    <link rel="canonical" href="https://vvavy.io">
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#772953">
+
+    <link rel="icon" type="image/svg+xml" href="./images/vvavy_favicon_256.png">
+    <link rel="apple-touch-icon" href="./images/vvavy_favicon_256.png">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Sound to Sight",
+      "name": "VVavy",
       "description": "Real-time audio visualizer that transforms music into visual art",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Web Browser",
@@ -72,8 +75,26 @@
             <div id="nowPlaying" class="now-playing" style="display:none;">
                 <div class="section-label" style="font-weight: bold; font-size: 1.1em;">Now Playing</div>
                 <div class="track-info">
-                    <div class="track-title" id="trackTitle">Unknown Track</div>
-                    <div class="track-artist" id="trackArtist">Unknown Artist</div>
+                    <div class="track-text">
+                        <div class="track-line">
+                            <a id="trackTitle" class="track-title" rel="noopener">Unknown Track</a>
+                        </div>
+                        <div class="track-line">
+                            <span class="track-artist-prefix">by</span>
+                            <a id="trackArtist" class="track-artist" rel="noopener">Unknown Artist</a>
+                        </div>
+                        <div class="soundcloud-attribution" id="soundCloudAttribution" hidden>
+                            <a id="soundCloudLogoLink" class="soundcloud-logo-link" href="https://soundcloud.com"
+                                target="_blank" rel="noopener">
+                                <img src="./images/soundcloud.png" alt="SoundCloud logo" class="soundcloud-logo">
+                            </a>
+                            <a id="soundCloudTrackLink" class="soundcloud-track-link" href="https://soundcloud.com"
+                                target="_blank" rel="noopener">
+                                Listen on SoundCloud
+                            </a>
+                        </div>
+                    </div>
+                    <img id="trackArtwork" class="track-artwork" src="" alt="" hidden loading="lazy">
                 </div>
             </div>
 
@@ -101,6 +122,12 @@
             <!-- Audio Source Section -->
             <div class="section-divider">
                 <div class="section-label">Audio Source</div>
+                <button id="soundcloudBtn" class="control-btn featured" style="display:none;">
+                    <span class="btn-icon"> <img src="./images/soundcloud.png" alt="SoundCloud logo"
+                            class="soundcloud-logo">
+                    </span>
+                    <span class="btn-label">SoundCloud Search</span>
+                </button>
                 <button id="fileSelectBtn" class="control-btn">
                     <span class="btn-icon">📁</span>
                     <span class="btn-label">Load MP3</span>
@@ -113,68 +140,48 @@
                     <span class="btn-icon">🖼️</span>
                     <span class="btn-label">Upload Image</span>
                 </button>
-                <button id="showHelpOverlayBtn" class="control-btn">
-                    <span class="btn-icon">❔</span>
-                    <span class="btn-label">Getting Started</span>
-                </button>
             </div>
             <!-- Feedback Section -->
             <div class="section-divider">
                 <div class="section-label">Feedback</div>
-                <a href="https://github.com/elft/soundtosight/issues/new?labels=Cool+Visual+Idea" target="_blank" class="control-btn" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+                <a href="https://github.com/elft/soundtosight/issues/new?labels=Cool+Visual+Idea" target="_blank"
+                    class="control-btn" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
                     <span class="btn-icon">💡</span>
-                    <span class="btn-label">Got feedback? OR want to bring your visual to life?</span>
+                    <span class="btn-label">Got feedback OR want to bring your visual to life?</span>
                 </a>
             </div>
-    </div>
-    </div>
-
-    <!-- Getting Started Overlay -->
-    <div class="getting-started-overlay" id="gettingStartedOverlay">
-        <div class="getting-started-card">
-            <div class="getting-started-header">
-                <h2>Bring your audio to life</h2>
-                <p class="getting-started-tagline">Choose how you want to start exploring the visuals.</p>
-            </div>
-            <div class="getting-started-actions">
-                <button id="startDemoBtn" class="onboard-btn primary">
-                    <span class="btn-icon">🎧</span>
-                    <span class="btn-text">
-                        <strong>Play Demo Track</strong>
-                        <small>See the visualizer in action instantly</small>
-                    </span>
-                </button>
-                <button id="startUploadBtn" class="onboard-btn">
-                    <span class="btn-icon">📁</span>
-                    <span class="btn-text">
-                        <strong>Upload Your Audio</strong>
-                        <small>Pick an MP3, WAV, or drop a file anywhere</small>
-                    </span>
-                </button>
-                <button id="startMicBtn" class="onboard-btn">
-                    <span class="btn-icon">🎤</span>
-                    <span class="btn-text">
-                        <strong>Use Microphone</strong>
-                        <small>Jam live with visuals that react instantly</small>
-                    </span>
-                </button>
-            </div>
-            <p class="getting-started-hint">
-                Tip: Controls live in the bottom-right corner. You can revisit this overlay anytime from the menu.
-            </p>
         </div>
     </div>
 
     <!-- Drop Zone Overlay -->
     <div class="drop-overlay" id="dropOverlay">
         <div class="drop-content">
-            <div class="upload-icon">🎵</div>
-            <h2>Drop your audio file here</h2>
-            <p>or click to browse your files</p>
-            <div class="alternative-option">
-                <p>💡 <strong>Tip:</strong> Use the <strong>"Load MP3"</strong> button in the bottom-right controls</p>
-                <p>🎤 Or try the <strong>"Microphone"</strong> button to use live audio</p>
+            <div class="drop-brand">
+                <img src="./images/vvavy_favicon_256.png" alt="" class="brand-mark brand-mark--compact" aria-hidden="true">
+                <div class="drop-brand-text">
+                    <img src="./images/vvavy_full_logo.png" alt="Vvavy logo" class="brand-mark brand-mark--full" aria-hidden="true">
+                    <span class="drop-brand-tagline">Flow with your sound</span>
+                </div>
             </div>
+            <section class="drop-card drop-card-soundcloud">
+                <div class="drop-card-badge">Instant streaming</div>
+                <h2>Play from SoundCloud</h2>
+                <p>Search millions of tracks and jump straight into the visualizer—no uploads required.</p>
+                <button type="button" class="drop-primary-btn" id="dropSoundCloudBtn">
+                    <img src="./images/soundcloud.png" alt="" aria-hidden="true" class="drop-soundcloud-icon">
+                    <span>Browse SoundCloud</span>
+                </button>
+                <p class="drop-card-hint">Tip: recent plays are saved so you can return in a tap.</p>
+            </section>
+            <section class="drop-card drop-card-upload" id="dropUploadCard">
+                <div class="upload-icon" aria-hidden="true">🎵</div>
+                <h2>Bring your own audio</h2>
+                <p>Drag a file anywhere on the screen or choose one from your device.</p>
+                <button type="button" class="drop-secondary-btn" id="dropUploadBrowseBtn">Upload audio file</button>
+                <ul class="drop-helpers">
+                    <li>Switch to Microphone to paint with live sound</li>
+                </ul>
+            </section>
         </div>
     </div>
 

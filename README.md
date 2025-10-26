@@ -1,4 +1,4 @@
-# 🎵✨ Sound to Sight - Audio Visualizer
+# 🎵✨ Vvavy - Audio Visualizer
 
 **Experience music like never before** - Transform your favorite songs into mesmerizing visual art with real-time audio visualization.
 
@@ -85,7 +85,7 @@ Please read all warnings before use and stop immediately if you experience disco
 
 ## 🔒 Privacy
 
-Sound to Sight is privacy-first:
+Vvavy is privacy-first:
 - ✅ All audio processing happens locally in your browser
 - ✅ No data is uploaded to any servers
 - ✅ No tracking or analytics
@@ -103,7 +103,7 @@ Sound to Sight is privacy-first:
 This is an experimental web application provided "as is" without warranties.
 
 ### Terms of Use
-By using Sound to Sight, you agree to:
+By using Vvavy, you agree to:
 - Use at your own risk
 - Be 13+ years old (with parental consent if under 18)
 - Have legal rights to any uploaded audio
@@ -116,7 +116,7 @@ This is a personal project, but suggestions and feedback are welcome!
 
 ## 🎯 SEO Keywords
 
-audio visualizer, music visualizer, sound visualization, audio spectrum analyzer, real-time audio visualization, web audio visualizer, mp3 visualizer, sound to sight, music to visual, audio reactive art, visual music, waveform visualizer, frequency analyzer, beat visualizer, online audio visualizer, free music visualizer, browser audio visualizer
+audio visualizer, music visualizer, sound visualization, audio spectrum analyzer, real-time audio visualization, web audio visualizer, mp3 visualizer, vvavy, music to visual, audio reactive art, visual music, waveform visualizer, frequency analyzer, beat visualizer, online audio visualizer, free music visualizer, browser audio visualizer
 
 ## 📞 Support
 
