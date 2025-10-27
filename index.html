@@ -8,10 +8,9 @@
     <!-- SEO Meta Tags -->
     <title>VVavy - Audio Visualizer | Transform Music into Visual Art</title>
     <meta name="description"
-        content="Experience music like never before with VVavy - a free, real-time audio visualizer that transforms sound into mesmerizing visual art. Upload MP3s or use your microphone for stunning audio-reactive visuals.">
+        content="Experience music like never before with VVavy - a free, real-time audio visualizer that transforms sound into mesmerizing visual art. Upload MP3s, search SoundCloud or use your microphone for stunning audio-reactive visuals.">
     <meta name="keywords"
         content="audio visualizer, music visualizer, vvavy, audio reactive, visual music, mp3 visualizer, sound visualization, music to visual, audio spectrum analyzer, real-time audio visualization, web audio visualizer, free music visualizer">
-    <meta name="author" content="Tyler E">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph Meta Tags for Social Media -->
@@ -53,7 +52,7 @@
         "priceCurrency": "USD"
       },
       "browserRequirements": "Requires JavaScript. Works with modern web browsers.",
-      "featureList": "Real-time audio visualization, MP3 upload support, microphone input, multiple visualizer styles"
+      "featureList": "Real-time audio visualization, MP3 upload support, SoundCloud support, microphone input, multiple visualizer styles"
     }
     </script>
 
@@ -65,9 +64,10 @@
 
     <!-- Floating Controls (Bottom-Right) -->
     <div class="floating-controls bottom-right">
-        <button id="menuToggle" class="menu-toggle-btn">
-            <span class="toggle-icon">▼</span>
-            <span class="toggle-text">Controls</span>
+        <button id="menuToggle" class="menu-toggle-btn" aria-label="Toggle controls panel">
+            <span class="toggle-logo" aria-hidden="true">
+                <img src="./images/vvavy_favicon_256.png" alt="">
+            </span>
         </button>
 
         <div id="menuPanel" class="menu-panel collapsed">
@@ -130,7 +130,7 @@
                 </button>
                 <button id="fileSelectBtn" class="control-btn">
                     <span class="btn-icon">📁</span>
-                    <span class="btn-label">Load MP3</span>
+                    <span class="btn-label">Upload Audio File</span>
                 </button>
                 <button id="micBtn" class="control-btn">
                     <span class="btn-icon">🎤</span>
