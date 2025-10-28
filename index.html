@@ -165,16 +165,37 @@
             <section class="drop-card drop-card-soundcloud">
                 <div class="drop-card-badge">Instant streaming</div>
                 <h2>Play from SoundCloud</h2>
-                <p>Search millions of tracks and jump straight into the visualizer—no uploads required.</p>
+                <p>Search millions of tracks and jump straight into the vibes, no cap.</p>
                 <button type="button" class="drop-primary-btn" id="dropSoundCloudBtn">
                     <img src="./images/soundcloud.png" alt="" aria-hidden="true" class="drop-soundcloud-icon">
                     <span>Browse SoundCloud</span>
                 </button>
+                <button type="button" class="cta-track soundcloud-recommendation" id="playRecommendedSoundcloudBtn">
+                    <span class="cta-track__artwork">
+                        <img src="https://i1.sndcdn.com/artworks-000118815345-eap7vz-large.jpg"
+                            alt="Artwork for ASTRAL PROJECTION MUSIC: lucid dreaming binaural beats | Deep Sleep Meditation Music"
+                            loading="lazy">
+                    </span>
+                    <span class="cta-track__meta">
+                        <span class="cta-track__label">Recommended Chill</span>
+                        <span class="cta-track__title">ASTRAL PROJECTION MUSIC: lucid dreaming binaural beats</span>
+                        <span class="cta-track__subtitle">by Spiritual Moment · SoundCloud</span>
+                    </span>
+                </button>
             </section>
             <section class="drop-card drop-card-upload" id="dropUploadCard">
+                <div class="drop-card-badge">UPLOAD</div>
                 <h2>Bring your own audio</h2>
                 <p>Drag a file anywhere on the screen or choose one from your device.</p>
-                <button type="button" class="drop-secondary-btn" id="dropUploadBrowseBtn">Upload audio file</button>
+                <button type="button" class="drop-secondary-btn" id="dropUploadBrowseBtn" style="width: 100%">Upload audio file</button>
+                <button type="button" class="cta-track demo-recommendation" id="playDemoTrackBtn" style="width: 100%">
+                    <span class="cta-track__artwork cta-track__artwork--demo" aria-hidden="true">🎧</span>
+                    <span class="cta-track__meta">
+                        <span class="cta-track__label">Get Started Now</span>
+                        <span class="cta-track__title">Soundscapes: An electronic journey </span>
+                        <span class="cta-track__subtitle">by spatial</span>
+                    </span>
+                </button>
             </section>
         </div>
     </div>
@@ -188,6 +209,17 @@
     <script src="BaseVisualizer.js"></script>
     <script src="scripts/domUtils.js"></script>
     <script src="config/visualizers-manifest.js"></script>
+    <script>
+        window.RECOMMENDED_SOUNDCLOUD_TRACK = {
+            id: "208291969",
+            permalinkUrl: "https://soundcloud.com/spiritualmoment/astral-projection-music-lucid-dreaming-binaural-beats-deep-sleep-meditation-music?utm_medium=api&utm_campaign=social_sharing&utm_source=id_319996",
+            title: "ASTRAL PROJECTION MUSIC: lucid dreaming binaural beats | Deep Sleep Meditation Music",
+            artist: "Spiritual Moment",
+            artworkUrl: "https://i1.sndcdn.com/artworks-000118815345-eap7vz-large.jpg",
+            duration: 1443530,
+            lastPlayed: 1761611898352
+        };
+    </script>
     <script src="scripts/visualizerLoader.js"></script>
     <script src="audioVisualizer.js"></script>
     <script src="scripts/termsModal.js"></script>
