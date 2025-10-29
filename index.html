@@ -66,9 +66,11 @@
     <div id="visualSearchBar" class="visual-search-bar hidden dimmed" aria-hidden="true">
         <div class="visual-search-inner">
             <label for="visualizerSearch" class="offscreen">Search visuals</label>
-            <input id="visualizerSearch" type="search" placeholder="Search visuals (mood, genre, tag)" aria-label="Search visualizers" autocomplete="off">
+            <input id="visualizerSearch" type="search" placeholder="Search visuals (mood, genre, tag)"
+                aria-label="Search visualizers" autocomplete="off">
             <div id="visualizerSearchSummary" class="visualizer-search-summary" aria-live="polite"></div>
-            <div id="visualSearchDropdown" class="visual-search-dropdown hidden" role="listbox" aria-label="Visualizer options"></div>
+            <div id="visualSearchDropdown" class="visual-search-dropdown hidden" role="listbox"
+                aria-label="Visualizer options"></div>
         </div>
     </div>
 
@@ -76,46 +78,33 @@
     <div id="playerDock" class="player-dock" aria-label="Playback controls">
         <div class="player-shell">
             <div class="player-controls">
-                <button type="button" id="playerControlsToggle" class="player-btn player-controls-toggle" aria-label="Show player controls" aria-expanded="false" aria-controls="playerControlsPanel">
+                <button type="button" id="playerControlsToggle" class="player-btn player-controls-toggle"
+                    aria-label="Show player controls" aria-expanded="false" aria-controls="playerControlsPanel">
                     <span class="btn-icon">⚙️</span>
                     <span class="offscreen btn-label">Player controls</span>
                 </button>
                 <div id="playerControlsPanel" class="player-controls-panel" hidden>
-                    <button id="sourcePickerBtn" class="player-btn source-picker" aria-label="Choose audio source">
-                        <span class="btn-icon">🎵</span>
-                        <span class="offscreen btn-label">Choose audio source</span>
-                    </button>
-                    <button id="playPauseBtn" class="player-btn play" aria-label="Play" disabled>
-                        <span class="btn-icon">▶</span>
-                        <span class="offscreen btn-label">Play</span>
-                    </button>
-                    <button id="micBtn" class="player-btn mic" aria-label="Microphone input">
-                        <span class="btn-icon">🎤</span>
-                        <span class="offscreen btn-label">Microphone</span>
-                    </button>
-                    <button id="fileSelectBtn" class="player-btn upload" aria-label="Upload audio file">
-                        <span class="btn-icon">📁</span>
-                        <span class="offscreen btn-label">Upload audio file</span>
-                    </button>
-                    <button id="soundcloudBtn" class="player-btn soundcloud" style="display:none;" aria-label="Open SoundCloud browser">
-                        <span class="btn-icon">
-                            <img src="./images/soundcloud.png" alt="SoundCloud logo" class="soundcloud-logo">
-                        </span>
-                        <span class="offscreen btn-label">SoundCloud</span>
-                    </button>
-                    <button id="imageUploadBtn" class="player-btn image-upload" style="display:none;" aria-label="Upload image for visual">
-                        <span class="btn-icon">🖼️</span>
-                        <span class="offscreen btn-label">Upload image</span>
-                    </button>
+                    <div class="player-controls-group">
+                        <button id="imageUploadBtn" class="player-btn image-upload" style="display:none;"
+                            aria-label="Upload image for visual">
+                            <span class="btn-icon">🖼️</span>
+                            <span class="offscreen btn-label">Upload image</span>
+                        </button>
+                        <button id="visualSearchToggleBtn" class="player-btn player-btn--text visual-search-toggle"
+                            type="button" aria-label="Toggle visual browser" aria-pressed="false">
+                            Search Visuals
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="player-meta">
+                <div class="player-source-indicator" aria-live="polite">
+                    <span class="player-source-indicator-icon" id="playerSourceIndicatorIcon"
+                        aria-hidden="true">—</span>
+                    <span class="player-source-indicator-label" id="playerSourceIndicatorLabel">No source</span>
+                </div>
                 <div class="player-artwork">
                     <img id="playerArtwork" alt="" hidden loading="lazy">
-                </div>
-                <div class="player-source-indicator" aria-live="polite">
-                    <span class="player-source-indicator-icon" id="playerSourceIndicatorIcon" aria-hidden="true">—</span>
-                    <span class="player-source-indicator-label" id="playerSourceIndicatorLabel">No source</span>
                 </div>
                 <div class="player-text">
                     <a id="playerTitle" class="player-title" rel="noopener">No track loaded</a>
@@ -129,6 +118,14 @@
                     <span id="playerDurationDivider" class="player-duration-divider">/</span>
                     <span id="playerDuration">0:00</span>
                 </div>
+                <button id="sourcePickerBtn" class="player-btn source-picker" aria-label="Choose audio source">
+                    <span class="btn-icon">🎧</span>
+                    <span class="offscreen btn-label">Choose audio source</span>
+                </button>
+                <button id="playPauseBtn" class="player-btn play" aria-label="Play" disabled>
+                    <span class="btn-icon">▶</span>
+                    <span class="offscreen btn-label">Play</span>
+                </button>
             </div>
         </div>
     </div>
@@ -173,7 +170,8 @@
                         <span class="selection-card__icon">🎤</span>
                         <h3 class="selection-card__title">Microphone</h3>
                     </div>
-                    <p class="selection-card__description">Jam live by routing your mic or interface straight into VVavy.</p>
+                    <p class="selection-card__description">Jam live by routing your mic or interface straight into
+                        VVavy.</p>
                     <div class="selection-card__meta">
                         <span class="selection-card__tag">Live input</span>
                     </div>
@@ -183,17 +181,20 @@
     </main>
 
     <!-- Quick Start Modal -->
-    <div class="quickstart-modal" id="quickStartModal" role="dialog" aria-modal="true" aria-labelledby="quickStartTitle">
+    <div class="quickstart-modal" id="quickStartModal" role="dialog" aria-modal="true"
+        aria-labelledby="quickStartTitle">
         <div class="quickstart-modal__content">
-            <button type="button" class="quickstart-modal__close" id="quickStartCloseBtn" aria-label="Close quick start">
+            <button type="button" class="quickstart-modal__close" id="quickStartCloseBtn"
+                aria-label="Close quick start">
                 <span aria-hidden="true">&times;</span>
             </button>
             <img src="./images/vvavy_full_logo.png" alt="Vvavy logo" class="brand-mark brand-mark--compact">
             <h2 id="quickStartTitle" class="quickstart-modal__title">Jump right in</h2>
             <p class="quickstart-modal__message">
-                Select a visual from the list above and use the music icon below the canvas to choose an audio source.
-                Want to hear how it all comes together? Hit Quick Start to play our demo track with the default visual.
+                Select a visual from the ⚙️ button then select audio source from the 🎧 button.
             </p>
+            OR
+
             <button type="button" class="quickstart-modal__cta" id="quickStartStartBtn">Quick Start</button>
             <p id="quickStartStatus" class="quickstart-status" aria-live="polite"></p>
         </div>
