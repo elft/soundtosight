@@ -1,122 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VVavy – Terms of Service & User Agreement</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        html, body {
-            height: 100%;
-            min-height: 100%;
-            overflow-y: auto;
-        }
-        body {
-            background: #060b16;
-            color: #f5f6fa;
-            font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-            line-height: 1.65;
-            margin: 0;
-            padding: 0 16px 48px;
-            -webkit-overflow-scrolling: touch;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 48px 0 72px;
-        }
-        h1, h2, h3 {
-            color: #7dd0ff;
-            margin-top: 32px;
-        }
-        h1 {
-            font-size: 2.4rem;
-            margin-bottom: 12px;
-        }
-        p, li {
-            margin-bottom: 16px;
-        }
-        ul, ol {
-            padding-left: 24px;
-        }
-        a {
-            color: #9be2ff;
-        }
-        .notice {
-            background: rgba(125, 208, 255, 0.08);
-            border: 1px solid rgba(125, 208, 255, 0.2);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 24px 0;
-        }
-        .back-link {
-            display: inline-block;
-            margin-top: 32px;
-            color: #fff;
-            text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 10px 18px;
-            border-radius: 999px;
-            transition: background 0.2s ease, color 0.2s ease;
-        }
-        .back-link:hover {
-            background: #fff;
-            color: #060b16;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VVavy — Terms of Service & Privacy Notice</title>
+  <meta name="theme-color" content="#060b16" />
+  <link rel="icon" href="/images/vvavy_favicon_256.png" />
+  <style>
+    :root{
+      --bg:#060b16;--text:#f5f6fa;--muted:#b8c3cf;--edge:#1a2436;
+      --brand:#7dd0ff;--brand-2:#9be2ff;--card:rgba(125,208,255,.06);
+      --card-b:rgba(125,208,255,.18);--ok:#4ade80;--warn:#fbbf24;--bad:#f87171;
+    }
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 "Inter","Segoe UI",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:980px;margin:0 auto;padding:48px 20px 96px}
+    .brand{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+    .brand img{width:32px;height:32px;border-radius:8px}
+    h1,h2,h3{color:var(--brand);margin:28px 0 10px;line-height:1.25}
+    h1{font-size:2.25rem}
+    h2{font-size:1.35rem}
+    h3{font-size:1.05rem;color:var(--brand-2)}
+    p,li{color:var(--text);margin:0 0 14px}
+    a{color:var(--brand-2);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .card{background:var(--card);border:1px solid var(--card-b);border-radius:14px;padding:18px 18px}
+    .grid{display:grid;gap:18px}
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;border:1px solid var(--card-b);border-radius:999px;padding:6px 10px;font-size:.85rem;color:var(--muted)}
+    .toc a{display:block;padding:8px 0}
+    .hr{height:1px;background:linear-gradient(90deg,transparent,var(--edge),transparent);margin:24px 0}
+    .notice{border-left:3px solid var(--brand);padding:12px 14px;background:rgba(125,208,255,.07);border-radius:6px}
+    .callout-ok{border-left-color:var(--ok)}
+    .callout-warn{border-left-color:var(--warn)}
+    .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#0b1426;border:1px solid #152443;border-radius:8px;padding:2px 6px}
+    .footer{margin-top:48px;color:var(--muted);font-size:.9rem}
+    .back{display:inline-block;margin-top:22px;border:1px solid var(--card-b);border-radius:999px;padding:10px 16px}
+    @media (prefers-color-scheme: light){
+      body{background:#0b1224;color:#e9eef5}
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <img src="images/vvavy_favicon_256.png" alt="Vvavy logo" class="brand-mark brand-mark--terms">
-        <h1>Terms of Service &amp; User Agreement</h1>
-
-        <div class="notice">
-            <strong>IMPORTANT:</strong> By accessing or using Vvavy (“the Service”), you acknowledge that you have read, understood, and agree to be bound by this Terms of Service &amp; User Agreement. If you do not agree, do not use or access the Service.
-        </div>
-
-        <h2>1. About the Service</h2>
-        <p>Vvavy is an experimental web-based audio visualization experience operated by an independent creator (“we”, “us”, “our”). The Service transforms audio input into visual output for personal enjoyment. The Service is offered “as-is” without any guarantees.</p>
-
-        <h2>2. Eligibility</h2>
-        <p>You must be at least 13 years old, or the minimum age required by your jurisdiction, to use the Service. If you are using the Service on behalf of another person or entity, you represent that you are authorized to accept this Agreement on their behalf.</p>
-
-        <h2>3. Personal, Non-Commercial Use</h2>
-        <p>The Service is provided solely for personal, non-commercial use. You may not resell, sublicense, rent, lease, or otherwise exploit the Service or its output for commercial purposes without prior written permission.</p>
-
-        <h2>4. Audio Content Responsibility</h2>
-        <p>You are solely responsible for any audio content you upload, stream, or otherwise supply to the Service. You must ensure you have all necessary rights and authorizations to use such content. We do not host or store user audio; processing occurs client-side within your browser environment.</p>
-
-        <h2>5. Health &amp; Safety</h2>
-        <p>The Service may contain flashing lights, rapid motion, intense colors, and other visual effects that could trigger seizures or other adverse reactions in susceptible individuals. Use the Service in a safe environment, take frequent breaks, and discontinue use immediately if you experience any discomfort, dizziness, disorientation, or other health symptoms.</p>
-
-        <h2>6. No Warranties</h2>
-        <p>THE SERVICE IS PROVIDED “AS IS” AND “AS AVAILABLE” WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED. WE SPECIFICALLY DISCLAIM ANY WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND ANY WARRANTIES ARISING OUT OF COURSE OF DEALING OR USAGE OF TRADE. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED, ERROR-FREE, SECURE, OR FREE FROM HARMFUL COMPONENTS.</p>
-
-        <h2>7. Limitation of Liability</h2>
-        <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE OWNER, CONTRIBUTORS, AND AFFILIATES OF THE SERVICE SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, EXEMPLARY, OR PUNITIVE DAMAGES (INCLUDING, WITHOUT LIMITATION, LOSS OF PROFITS, DATA, GOODWILL, OR OTHER INTANGIBLE LOSSES) ARISING OUT OF OR RELATING TO YOUR ACCESS TO OR USE OF, OR INABILITY TO ACCESS OR USE, THE SERVICE. THIS LIMITATION APPLIES EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND REGARDLESS OF THE FAILURE OF ANY REMEDY OF ITS ESSENTIAL PURPOSE.</p>
-
-        <h2>8. Indemnification</h2>
-        <p>You agree to indemnify, defend, and hold harmless the owner, contributors, partners, and affiliates from and against any claims, liabilities, damages, losses, and expenses (including reasonable attorneys’ fees) arising out of or in any way connected with your access to or use of the Service, your violation of this Agreement, or your infringement of any third-party right.</p>
-
-        <h2>9. Assumption of Risk</h2>
-        <p>You expressly acknowledge and agree that your use of the Service is at your sole risk. You assume full responsibility for any risks associated with your use, including but not limited to hardware damage, eye strain, motion sickness, seizures, or other adverse health outcomes.</p>
-
-        <h2>10. Service Modifications &amp; Availability</h2>
-        <p>We reserve the right to modify, suspend, or discontinue the Service (in whole or in part) at any time without notice. We are not liable to you or any third party for any modification, price change, suspension, or discontinuance of the Service.</p>
-
-        <h2>11. Updates to this Agreement</h2>
-        <p>We may update this Agreement from time to time. The “Last updated” date indicates the most recent revision. Continued use of the Service after any changes constitutes acceptance of the revised Agreement.</p>
-
-        <h2>12. Governing Law</h2>
-        <p>This Agreement is governed by and construed in accordance with the laws of the jurisdiction in which the owner resides, without regard to its conflict of law principles. Any disputes must be resolved exclusively in the courts located within that jurisdiction.</p>
-
-        <h2>13. Severability</h2>
-        <p>If any provision of this Agreement is found to be unlawful, void, or unenforceable, that provision shall be deemed severable from this Agreement and shall not affect the validity and enforceability of the remaining provisions.</p>
-
-        <h2>14. Contact</h2>
-        <p>If you have questions about this Agreement, please contact the project owner through the GitHub repository issue tracker found at <a href="https://vvavy.io" target="_blank" rel="noopener">https://vvavy.io</a>.</p>
-
-        <a class="back-link" href="index.html">← Return to Vvavy</a>
+  <div class="wrap">
+    <div class="brand">
+      <img src="/images/vvavy_favicon_256.png" alt="VVavy" />
+      <span class="pill">Last updated: October 29, 2025</span>
     </div>
+    <h1>Terms of Service &amp; Privacy Notice</h1>
+    <p class="muted">Welcome to VVavy (“<strong>VVavy</strong>”, “we”, “us”). This page contains our Terms of Service and Privacy Notice. By using VVavy, you agree to these terms.</p>
+
+    <div class="card toc">
+      <h3>Quick navigation</h3>
+      <a href="#tos">1) Terms of Service</a>
+      <a href="#sc">2) SoundCloud Streaming Rules</a>
+      <a href="#privacy">3) Privacy Notice </a>
+      <a href="#contact">4) Contact</a>
+    </div>
+
+    <div class="hr"></div>
+
+    <section id="tos">
+      <h2>1) Terms of Service</h2>
+      <h3>1.1 About the Service</h3>
+      <p>VVavy is an experimental, web-based audio visualization experience. It transforms audio input into real-time visuals for personal enjoyment. The Service is provided “as-is.”</p>
+
+      <h3>1.2 Eligibility</h3>
+      <p>You must be at least 13 (or the minimum age in your jurisdiction). If you use VVavy for an organization, you confirm you’re authorized to accept these terms.</p>
+
+      <h3>1.3 Personal, Non-Commercial Use</h3>
+      <p>Use VVavy for personal, non-commercial purposes unless you have our prior written permission. Do not resell, sublicense, rent, or lease the Service or its outputs.</p>
+
+      <h3>1.4 Your Audio Content</h3>
+      <p>You are responsible for any audio you supply. Ensure you hold all necessary rights for any use (e.g., public performance, synchronization if applicable).</p>
+
+      <h3>1.5 Health & Safety</h3>
+      <p>Visuals may include flashing, motion, or intense color. Stop use if you experience discomfort. Use in a safe environment and take breaks.</p>
+
+      <h3>1.6 Modifications & Availability</h3>
+      <p>We may modify, suspend, or discontinue parts or all of VVavy at any time.</p>
+
+      <h3>1.7 No Warranties</h3>
+      <p>VVavy is provided “AS IS” and “AS AVAILABLE,” without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, and non-infringement.</p>
+
+      <h3>1.8 Limitation of Liability</h3>
+      <p>To the maximum extent permitted by law, VVavy and its contributors are not liable for indirect, incidental, special, consequential, exemplary, or punitive damages, or for lost profits, data, or goodwill.</p>
+
+      <h3>1.9 Indemnification</h3>
+      <p>You agree to indemnify and hold us harmless from claims arising from your use of VVavy or your breach of these terms.</p>
+
+      <h3>1.10 Governing Law</h3>
+      <p>Unless mandatory law says otherwise, these terms are governed by the laws of the owner’s domicile, and disputes are heard in those courts.</p>
+
+      <h3>1.11 Severability & Changes</h3>
+      <p>If any provision is unenforceable, the rest remain in effect. We may update these terms; continued use means you accept the changes.</p>
+    </section>
+
+    <div class="hr"></div>
+
+    <section id="sc">
+      <h2>2) SoundCloud Streaming Rules</h2>
+      <p class="notice">When you visualize audio sourced from SoundCloud, the following terms apply in addition to SoundCloud’s own API Terms and User Terms. VVavy is not affiliated with or endorsed by SoundCloud.</p>
+
+      <h3>2.1 Access & Availability</h3>
+      <ul>
+        <li>VVavy accesses SoundCloud audio solely via SoundCloud’s public APIs and only for real-time, client-side visualization.</li>
+        <li>Playback is attempted only for tracks where the uploader has enabled API playback. If a track is removed or API access is disabled, availability will cease promptly.</li>
+        <li>SoundCloud Go-only content is not accessible via VVavy.</li>
+      </ul>
+
+      <h3>2.2 Strictly No Downloading, Caching, or “Stream Ripping”</h3>
+      <ul>
+        <li><strong>No saving, downloading, recording, ripping, or making permanent copies</strong> of SoundCloud audio.</li>
+        <li>Only ephemeral, session-bound buffering is permitted to the extent necessary for playback; all such data is discarded when the session ends.</li>
+      </ul>
+
+      <h3>2.3 Exports & “Muted by Default” Rule</h3>
+      <ul>
+        <li>When you export visuals that were created from SoundCloud streams, exports are <strong>muted by default</strong>.</li>
+        <li>Embedding SoundCloud audio in an export is permitted only where you are the rights holder (or have all required rights, including synchronization) for the audio.</li>
+      </ul>
+
+      <h3>2.4 Attribution & Backlink</h3>
+      <ul>
+        <li>VVavy displays: (a) the SoundCloud uploader as the creator, (b) SoundCloud as the source, and (c) a visible link to the track’s SoundCloud permalink.</li>
+        <li>Where feasible, we use official SoundCloud components/buttons per their branding rules.</li>
+      </ul>
+
+      <h3>2.5 Prohibited Uses (SoundCloud)</h3>
+      <ul>
+        <li>No use of SoundCloud audio to train or develop any AI/ML models; no creating fingerprints or similar identifiers for exploitation.</li>
+        <li>No scraping, webcasting/radio apps, or attempts to bypass territorial/time restrictions, rate limits, ads, or content protection.</li>
+        <li>No advertising/sponsorship wrapped around third-party SoundCloud content played via VVavy.</li>
+        <li>No use of SoundCloud trademarks or logos except as allowed by their branding rules; no implication of endorsement.</li>
+      </ul>
+    </section>
+
+    <div class="hr"></div>
+
+    <section id="privacy">
+      <h2>3) Privacy Notice</h2>
+      <p class="muted">This Privacy Notice explains what we process, why, for how long, your rights, and how to contact us. For SoundCloud-linked features, VVavy acts as an <strong>independent controller</strong> of any Personal Data we process through SoundCloud’s APIs.</p>
+
+      <h3>3.1 What We Process</h3>
+      <ul>
+        <li><strong>Usage data:</strong> basic telemetry (e.g., errors, feature toggles) to keep VVavy reliable.</li>
+        <li> We do not store audio files.</li>
+        <li> We do not store microphone input.</li>
+        <li> Everything is processed in real time on the user's device.</li>
+      </ul>
+
+      <h3>3.2 Purposes & Legal Bases</h3>
+      <ul>
+        <li><strong>Provide the Service:</strong> enable real-time visualization and lawful playback; show attribution/permalinks.</li>
+        <li><strong>Security & abuse prevention:</strong> protect against misuse and keep the Service available.</li>
+        <li><strong>Compliance:</strong> meet SoundCloud API rules and applicable law.</li>
+      </ul>
+
+      <h3>3.3 Retention</h3>
+      <ul>
+        <li>We retain data only as long as necessary for the stated purposes.</li>
+        <li>On disconnect, SoundCloud-derived Personal Data is deleted within <strong>7 days</strong> (unless longer retention is legally required).</li>
+      </ul>
+
+      <h3>3.4 Security</h3>
+      <p>We implement technical and organizational measures appropriate to the risk (e.g., transport encryption, secret management, least-privilege access, and vulnerability remediation). If legally required, we will notify you and any relevant parties of a Personal Data breach.</p>
+
+      <h3>3.5 Your Rights</h3>
+      <p>Subject to local law, you may request access, correction, deletion, or restriction, and where applicable, object to processing or request portability. To exercise rights, contact <a href="mailto:vvavy.io@gmail.com">vvavy.io@gmail.com</a>. You may also lodge a complaint with your data protection authority.</p>
+
+      <h3>3.6 Children</h3>
+      <p>VVavy is not directed to children under 13 (or the minimum age in your jurisdiction). Do not use VVavy if you are under that age.</p>
+
+      <h3>3.7 Changes</h3>
+      <p>We may update this Notice. Material changes will be reflected by updating the “Last updated” date above.</p>
+    </section>
+
+    <div class="hr"></div>
+
+    <section id="contact">
+      <h2>4) Contact</h2>
+      <p>Terms or general questions: <a href="mailto:vvavy.io@gmail.com">vvavy.io@gmail.com</a><br/>
+         Project home: <a href="https://vvavy.io" target="_blank" rel="noopener">vvavy.io</a>
+      </p>
+      <a class="back" href="/">← Return to VVavy</a>
+    </section>
+
+    <div class="footer">
+      <p>© <span id="y"></span> VVavy. “SoundCloud” is a trademark of its respective owner. VVavy is not affiliated with or endorsed by SoundCloud.</p>
+    </div>
+  </div>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>

@@ -62,141 +62,133 @@
 <body>
     <div id="welcomeModalContainer"></div>
 
-    <!-- Floating Controls (Bottom-Right) -->
-    <div class="floating-controls bottom-right">
-        <button id="menuToggle" class="menu-toggle-btn" aria-label="Toggle controls panel">
-            <span class="toggle-logo" aria-hidden="true">
-                <img src="./images/vvavy_favicon_256.png" alt="">
-            </span>
-        </button>
+    <!-- Global Visual Search -->
+    <div id="visualSearchBar" class="visual-search-bar hidden dimmed" aria-hidden="true">
+        <div class="visual-search-inner">
+            <label for="visualizerSearch" class="offscreen">Search visuals</label>
+            <input id="visualizerSearch" type="search" placeholder="Search visuals (mood, genre, tag)" aria-label="Search visualizers" autocomplete="off">
+            <div id="visualizerSearchSummary" class="visualizer-search-summary" aria-live="polite"></div>
+            <div id="visualSearchDropdown" class="visual-search-dropdown hidden" role="listbox" aria-label="Visualizer options"></div>
+        </div>
+    </div>
 
-        <div id="menuPanel" class="menu-panel collapsed">
-            <!-- Now Playing Info -->
-            <div id="nowPlaying" class="now-playing" style="display:none;">
-                <div class="section-label" style="font-weight: bold; font-size: 1.1em;">Now Playing</div>
-                <div class="track-info">
-                    <div class="track-text">
-                        <div class="track-line">
-                            <a id="trackTitle" class="track-title" rel="noopener">Unknown Track</a>
-                        </div>
-                        <div class="track-line">
-                            <span class="track-artist-prefix">by</span>
-                            <a id="trackArtist" class="track-artist" rel="noopener">Unknown Artist</a>
-                        </div>
-                        <div class="soundcloud-attribution" id="soundCloudAttribution" hidden>
-                            <a id="soundCloudLogoLink" class="soundcloud-logo-link" href="https://soundcloud.com"
-                                target="_blank" rel="noopener">
-                                <img src="./images/soundcloud.png" alt="SoundCloud logo" class="soundcloud-logo">
-                            </a>
-                            <a id="soundCloudTrackLink" class="soundcloud-track-link" href="https://soundcloud.com"
-                                target="_blank" rel="noopener">
-                                Listen on SoundCloud
-                            </a>
-                        </div>
-                    </div>
-                    <img id="trackArtwork" class="track-artwork" src="" alt="" hidden loading="lazy">
-                </div>
-            </div>
-
-            <!-- Visual Selector Section -->
-            <div>
-                <div class="section-label">Visual</div>
-                <div class="visualizer-selector">
-                    <select id="visualizerSelect"></select>
-                </div>
-            </div>
-
-            <!-- Audio Controls Section -->
-            <div class="section-divider">
-                <div class="section-label">Audio Controls</div>
-                <button id="playPauseBtn" class="control-btn" disabled>
+    <!-- Player Widget -->
+    <div id="playerDock" class="player-dock" aria-label="Playback controls">
+        <div class="player-shell">
+            <div class="player-controls">
+                <button id="sourcePickerBtn" class="player-btn source-picker" aria-label="Choose audio source">
+                    <span class="btn-icon">🎵</span>
+                    <span class="offscreen btn-label">Choose audio source</span>
+                </button>
+                <button id="playPauseBtn" class="player-btn play" aria-label="Play" disabled>
                     <span class="btn-icon">▶</span>
-                    <span class="btn-label">Play</span>
+                    <span class="offscreen btn-label">Play</span>
                 </button>
-                <button id="stopBtn" class="control-btn" disabled>
-                    <span class="btn-icon">⏹</span>
-                    <span class="btn-label">Stop</span>
-                </button>
-            </div>
-
-            <!-- Audio Source Section -->
-            <div class="section-divider">
-                <div class="section-label">Audio Source</div>
-                <button id="soundcloudBtn" class="control-btn featured" style="display:none;">
-                    <span class="btn-icon"> <img src="./images/soundcloud.png" alt="SoundCloud logo"
-                            class="soundcloud-logo">
-                    </span>
-                    <span class="btn-label">SoundCloud Search</span>
-                </button>
-                <button id="fileSelectBtn" class="control-btn">
-                    <span class="btn-icon">📁</span>
-                    <span class="btn-label">Upload Audio File</span>
-                </button>
-                <button id="micBtn" class="control-btn">
+                <button id="micBtn" class="player-btn mic" aria-label="Microphone input">
                     <span class="btn-icon">🎤</span>
-                    <span class="btn-label">Microphone</span>
+                    <span class="offscreen btn-label">Microphone</span>
                 </button>
-                <button id="imageUploadBtn" class="control-btn" style="display:none;">
+                <button id="fileSelectBtn" class="player-btn upload" aria-label="Upload audio file">
+                    <span class="btn-icon">📁</span>
+                    <span class="offscreen btn-label">Upload audio file</span>
+                </button>
+                <button id="soundcloudBtn" class="player-btn soundcloud" style="display:none;" aria-label="Open SoundCloud browser">
+                    <span class="btn-icon">
+                        <img src="./images/soundcloud.png" alt="SoundCloud logo" class="soundcloud-logo">
+                    </span>
+                    <span class="offscreen btn-label">SoundCloud</span>
+                </button>
+                <button id="imageUploadBtn" class="player-btn image-upload" style="display:none;" aria-label="Upload image for visual">
                     <span class="btn-icon">🖼️</span>
-                    <span class="btn-label">Upload Image</span>
+                    <span class="offscreen btn-label">Upload image</span>
                 </button>
             </div>
-            <!-- Feedback Section -->
-            <div class="section-divider">
-                <div class="section-label">Feedback</div>
-                <a href="https://github.com/elft/soundtosight/issues/new?labels=Cool+Visual+Idea" target="_blank"
-                    class="control-btn" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
-                    <span class="btn-icon">💡</span>
-                    <span class="btn-label">Got feedback OR want to bring your visual to life?</span>
-                </a>
+            <div class="player-meta">
+                <div class="player-artwork">
+                    <img id="playerArtwork" alt="" hidden loading="lazy">
+                </div>
+                <div class="player-source-indicator" aria-live="polite">
+                    <span class="player-source-indicator-icon" id="playerSourceIndicatorIcon" aria-hidden="true">—</span>
+                    <span class="player-source-indicator-label" id="playerSourceIndicatorLabel">No source</span>
+                </div>
+                <div class="player-text">
+                    <a id="playerTitle" class="player-title" rel="noopener">No track loaded</a>
+                    <div class="player-artist-line">
+                        <span class="player-artist-prefix">by</span>
+                        <a id="playerArtist" class="player-artist" rel="noopener">—</a>
+                    </div>
+                </div>
+                <div class="player-duration" id="playerDurationWrapper" aria-hidden="true">
+                    <span id="playerCurrentTime">0:00</span>
+                    <span id="playerDurationDivider" class="player-duration-divider">/</span>
+                    <span id="playerDuration">0:00</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Drop Zone Overlay -->
-    <div class="drop-overlay" id="dropOverlay">
-        <div class="drop-content">
-            <div class="drop-brand">
-                <div class="drop-brand-text">
-                    <img src="./images/vvavy_full_logo.png" alt="Vvavy logo" class="brand-mark brand-mark--full" style="margin-left: 0;" aria-hidden="true">
-                    <span class="drop-brand-tagline">Flow with your sound</span>
-                </div>
+    <!-- Selection Hub -->
+    <main id="selectionHub" class="selection-hub">
+        <section class="selection-section" id="visualSelectionSection" aria-labelledby="visualSelectionTitle">
+            <h2 id="visualSelectionTitle" class="selection-title">Visuals</h2>
+            <p class="selection-subtitle">Pick a visual experience. Descriptions and tags help set the vibe.</p>
+            <div id="visualSelectionGrid" class="selection-grid" role="list"></div>
+            <select id="visualizerSelect" class="visualizer-select offscreen" aria-hidden="true" tabindex="-1"></select>
+        </section>
+
+        <section class="selection-section" id="sourceSelectionSection" aria-labelledby="sourceSelectionTitle">
+            <h2 id="sourceSelectionTitle" class="selection-title">Audio Source</h2>
+            <p class="selection-subtitle">Choose how VVavy receives audio.</p>
+            <div id="sourceSelectionGrid" class="selection-grid selection-grid--sources" role="list">
+                <button type="button" class="selection-card" data-source-card="soundcloud">
+                    <div class="selection-card__header">
+                        <span class="selection-card__icon">☁️</span>
+                        <h3 class="selection-card__title">SoundCloud</h3>
+                    </div>
+                    <p class="selection-card__description">Browse and stream tracks directly from SoundCloud.</p>
+                    <div class="selection-card__meta">
+                        <span class="selection-card__tag">Streaming</span>
+                        <span class="selection-card__tag selection-card__tag--hint">Requires local server</span>
+                    </div>
+                </button>
+                <button type="button" class="selection-card" data-source-card="file">
+                    <div class="selection-card__header">
+                        <span class="selection-card__icon">📁</span>
+                        <h3 class="selection-card__title">Upload</h3>
+                    </div>
+                    <p class="selection-card__description">Drag & drop or browse files to play your own tracks.</p>
+                    <div class="selection-card__meta">
+                        <span class="selection-card__tag">Local files</span>
+                    </div>
+                </button>
+                <button type="button" class="selection-card" data-source-card="mic">
+                    <div class="selection-card__header">
+                        <span class="selection-card__icon">🎤</span>
+                        <h3 class="selection-card__title">Microphone</h3>
+                    </div>
+                    <p class="selection-card__description">Jam live by routing your mic or interface straight into VVavy.</p>
+                    <div class="selection-card__meta">
+                        <span class="selection-card__tag">Live input</span>
+                    </div>
+                </button>
             </div>
-            <section class="drop-card drop-card-soundcloud">
-                <div class="drop-card-badge">Instant streaming</div>
-                <h2>Play from SoundCloud</h2>
-                <p>Search millions of tracks and jump straight into the vibes, no cap.</p>
-                <button type="button" class="drop-primary-btn" id="dropSoundCloudBtn">
-                    <img src="./images/soundcloud.png" alt="" aria-hidden="true" class="drop-soundcloud-icon">
-                    <span>Browse SoundCloud</span>
-                </button>
-                <button type="button" class="cta-track soundcloud-recommendation" id="playRecommendedSoundcloudBtn">
-                    <span class="cta-track__artwork">
-                        <img src="https://i1.sndcdn.com/artworks-000118815345-eap7vz-large.jpg"
-                            alt="Artwork for ASTRAL PROJECTION MUSIC: lucid dreaming binaural beats | Deep Sleep Meditation Music"
-                            loading="lazy">
-                    </span>
-                    <span class="cta-track__meta">
-                        <span class="cta-track__label">Recommended Chill</span>
-                        <span class="cta-track__title">ASTRAL PROJECTION MUSIC: lucid dreaming binaural beats</span>
-                        <span class="cta-track__subtitle">by Spiritual Moment · SoundCloud</span>
-                    </span>
-                </button>
-            </section>
-            <section class="drop-card drop-card-upload" id="dropUploadCard">
-                <div class="drop-card-badge">UPLOAD</div>
-                <h2>Bring your own audio</h2>
-                <p>Drag a file anywhere on the screen or choose one from your device.</p>
-                <button type="button" class="drop-secondary-btn" id="dropUploadBrowseBtn" style="width: 100%">Upload audio file</button>
-                <button type="button" class="cta-track demo-recommendation" id="playDemoTrackBtn" style="width: 100%">
-                    <span class="cta-track__artwork cta-track__artwork--demo" aria-hidden="true">🎧</span>
-                    <span class="cta-track__meta">
-                        <span class="cta-track__label">Get Started Now</span>
-                        <span class="cta-track__title">Soundscapes: An electronic journey </span>
-                        <span class="cta-track__subtitle">by spatial</span>
-                    </span>
-                </button>
-            </section>
+        </section>
+    </main>
+
+    <!-- Quick Start Modal -->
+    <div class="quickstart-modal" id="quickStartModal" role="dialog" aria-modal="true" aria-labelledby="quickStartTitle">
+        <div class="quickstart-modal__content">
+            <button type="button" class="quickstart-modal__close" id="quickStartCloseBtn" aria-label="Close quick start">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <img src="./images/vvavy_full_logo.png" alt="Vvavy logo" class="brand-mark brand-mark--compact">
+            <h2 id="quickStartTitle" class="quickstart-modal__title">Jump right in</h2>
+            <p class="quickstart-modal__message">
+                Select a visual from the list above and use the music icon below the canvas to choose an audio source.
+                Want to hear how it all comes together? Hit Quick Start to play our demo track with the default visual.
+            </p>
+            <button type="button" class="quickstart-modal__cta" id="quickStartStartBtn">Quick Start</button>
+            <p id="quickStartStatus" class="quickstart-status" aria-live="polite"></p>
         </div>
     </div>
 
@@ -209,21 +201,9 @@
     <script src="BaseVisualizer.js"></script>
     <script src="scripts/domUtils.js"></script>
     <script src="config/visualizers-manifest.js"></script>
-    <script>
-        window.RECOMMENDED_SOUNDCLOUD_TRACK = {
-            id: "208291969",
-            permalinkUrl: "https://soundcloud.com/spiritualmoment/astral-projection-music-lucid-dreaming-binaural-beats-deep-sleep-meditation-music?utm_medium=api&utm_campaign=social_sharing&utm_source=id_319996",
-            title: "ASTRAL PROJECTION MUSIC: lucid dreaming binaural beats | Deep Sleep Meditation Music",
-            artist: "Spiritual Moment",
-            artworkUrl: "https://i1.sndcdn.com/artworks-000118815345-eap7vz-large.jpg",
-            duration: 1443530,
-            lastPlayed: 1761611898352
-        };
-    </script>
     <script src="scripts/visualizerLoader.js"></script>
     <script src="audioVisualizer.js"></script>
     <script src="scripts/termsModal.js"></script>
-    <script src="scripts/menuToggle.js"></script>
 </body>
 
 </html>
