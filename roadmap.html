@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Product Roadmap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --chip-bg: rgba(119, 41, 83, 0.28);
+      --chip-brd: rgba(119, 41, 83, 0.55);
+      --panel-bg: rgba(12, 8, 18, 0.85);
+    }
+    .scroll-viewport { position:absolute; inset:0; overflow:auto; padding:24px 24px 140px; }
+    .roadmap-hero { background: linear-gradient(135deg, rgba(233,84,32,0.16), rgba(119,41,83,0.28));
+      border:1px solid var(--ubuntu-purple); padding:18px; margin-bottom:16px; box-shadow:0 10px 28px rgba(0,0,0,.35);}
+    .roadmap-hero h1 { font-weight:500; }
+    .toolbar { display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 18px; }
+    .toolbar input[type="search"], .toolbar select { background:var(--ubuntu-dark); border:1px solid var(--ubuntu-purple);
+      color:var(--text-primary); padding:8px 10px; min-width:180px; }
+    .roadmap-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:14px; align-items:start; }
+    .quarter-card { background: rgba(12,8,18,.8); border:1px solid var(--ubuntu-purple); box-shadow:0 8px 22px rgba(0,0,0,.35); padding:12px; }
+    .quarter-title { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; border-bottom:1px solid rgba(174,167,159,.22); padding-bottom:8px; }
+    .quarter-title h2 { font-size:1.05rem; font-weight:600; color:#fff; }
+    .quarter-meta { font-size:.8rem; color:var(--text-secondary); }
+    .item { background: rgba(20,6,28,.85); border:1px solid rgba(119,41,83,.45); padding:12px; margin:10px 0; transition:.18s; }
+    .item:hover { transform: translateY(-2px); border-color: rgba(255,166,102,.55); box-shadow:0 8px 24px rgba(233,84,32,.2); }
+    .item-title { font-weight:600; color:#fff; line-height:1.35; }
+    .item-title a { color:inherit; text-decoration:none; } .item-title a:hover { color:var(--ubuntu-orange); text-decoration:underline; }
+    .item-line { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:6px; font-size:.88rem; color:var(--text-secondary);}
+    .chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+    .chip { display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border:1px solid var(--chip-brd); background:var(--chip-bg);
+      font-size:.75rem; color:#fff; }
+    .chip.status-planned { border-color: rgba(174,167,159,.45); background: rgba(174,167,159,.15); }
+    .chip.status-inprogress { border-color: rgba(233,84,32,.6); background: rgba(233,84,32,.18); }
+    .chip.status-done { border-color: rgba(16,255,145,.55); background: rgba(16,255,145,.16); }
+    .chip.status-onhold { border-color: rgba(255,210,86,.6); background: rgba(255,210,86,.15); }
+    .chip.release { border-color: rgba(16,255,145,.55); background: rgba(16,255,145,.16); }
+    .notes { margin-top:8px; color:rgba(255,255,255,.82); font-size:.9rem; line-height:1.5; background:rgba(0,0,0,.2); border:1px dashed rgba(255,255,255,.16); padding:8px; }
+    .progress { margin-top:8px; }
+    .progress-bar { height:6px; background: rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2); }
+    .progress-fill { height:100%; width:0%; background: var(--ubuntu-orange); }
+    details.checklist { margin-top:8px; background: rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.12); padding:8px; }
+    .checklist-list { margin:8px 0 0 0; padding:0; list-style:none; }
+    .checklist-list li { padding:4px 0; }
+    .checklist-list li.done { color: rgba(16,255,145,.88); }
+    .empty-state { padding:14px; border:1px dashed rgba(255,255,255,.22); color:var(--text-secondary); text-align:center; }
+    .file-fallback { margin-top:12px; display:none; } .file-fallback.active { display:block; }
+  </style>
+</head>
+<body>
+  <main class="scroll-viewport">
+    <header class="roadmap-hero">
+      <h1>Product Roadmap</h1>
+      <div class="toolbar" role="region" aria-label="Roadmap filters">
+        <input id="searchBox" type="search" placeholder="Search titles, areas, owners, tags…" aria-label="Search roadmap">
+        <select id="statusFilter" aria-label="Filter by status">
+          <option value="">All statuses</option>
+          <option>In Progress</option>
+          <option>Planned</option>
+          <option>On Hold</option>
+          <option>Done</option>
+        </select>
+        <select id="areaFilter" aria-label="Filter by area">
+          <option value="">All areas</option>
+        </select>
+        <button class="control-btn" id="btnClearFilters" title="Clear filters">
+          <span class="btn-icon">✕</span><span class="btn-label">Clear</span>
+        </button>
+      </div>
+      <div class="file-fallback" id="fileFallback">
+        <label class="control-btn" style="display:inline-flex;">
+          <span class="btn-icon">📄</span><span class="btn-label">Load a .md/.tsv/.csv file…</span>
+          <input id="fileInput" type="file" accept=".md,.tsv,.csv,.txt" style="display:none">
+        </label>
+      </div>
+    </header>
+
+    <section id="root" class="roadmap-grid" aria-live="polite"></section>
+  </main>
+
+  <script>
+  /* ---------- helpers ---------- */
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => Array.from(document.querySelectorAll(sel));
+  const PREFER_SOURCES = [
+    { path:'roadmap.md',  type:'md'  },  // Markdown first (easiest to edit)
+    { path:'roadmap.tsv', type:'tsv' },
+    { path:'roadmap.csv', type:'csv' },
+  ];
+  let CURRENT_SOURCE = null;
+  let ALL_ITEMS = [];
+
+  function esc(s='') {
+    return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+  function statusKey(s) {
+    const t=(s||'').toLowerCase();
+    if (t.startsWith('in')) return 'inprogress';
+    if (t.startsWith('done')||t==='completed'||t==='complete') return 'done';
+    if (t.startsWith('on')) return 'onhold';
+    return 'planned';
+  }
+  function fmtDate(d) {
+    if (!d) return '';
+    const m = (''+d).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!m) return d;
+    return new Date(+m[1], +m[2]-1, +m[3]).toLocaleDateString();
+  }
+  function quarterSortValue(q) {
+    if (!q) return Number.POSITIVE_INFINITY;
+    const s=(''+q).trim(); let m;
+    if ((m=s.match(/^(\d{4})-?q([1-4])$/i))) return (+m[1])*4+(+m[2]);
+    if ((m=s.match(/^q([1-4])\s*(\d{4})$/i))) return (+m[2])*4+(+m[1]);
+    if ((m=s.match(/^(\d{4})-(\d{2})$/))) return (+m[1])*4+Math.ceil((+m[2])/3);
+    if ((m=s.match(/^(\d{4})$/))) return (+m[1])*4;
+    if (s.toUpperCase()==='TBD') return Number.POSITIVE_INFINITY-1;
+    return Number.POSITIVE_INFINITY;
+  }
+  function groupBy(arr, fn) {
+    const m=new Map(); for (const it of arr){ const k=fn(it); if(!m.has(k)) m.set(k, []); m.get(k).push(it); } return m;
+  }
+
+  /* ---------- parsers ---------- */
+  function parseSeparated(text, sep) {
+    const rows=[]; let i=0, f='', row=[], q=false;
+    while(i<text.length){ const ch=text[i];
+      if (ch==='"'){ if(q && text[i+1]==='"'){ f+='"'; i+=2; continue; } q=!q; i++; continue; }
+      if (!q && (ch==='\n'||ch==='\r')){ if (f!==''||row.length){ row.push(f); rows.push(row); row=[]; f=''; }
+        if (ch==='\r'&&text[i+1]==='\n') i++; i++; continue; }
+      if (!q && ch===sep){ row.push(f); f=''; i++; continue; }
+      f+=ch; i++;
+    }
+    if (f!==''||row.length){ row.push(f); rows.push(row); }
+    return rows.map(r=>r.map(c=>c.trim())).filter(r=>r.some(c=>c.length>0));
+  }
+  function normalizeFromHeaderRow(rows){
+    if (!rows.length) return [];
+    const header = rows[0].map(h => h.toLowerCase());
+    const idx = names => names.reduce((acc,n)=> acc>=0?acc: header.indexOf(n), -1);
+    const qi=idx(['quarter','q','when']);
+    const ti=idx(['title','item','name']);
+    const si=idx(['status','state']);
+    const ai=idx(['area','track','category','pillar']);
+    const oi=idx(['owner','lead']);
+    const gi=idx(['tags','tag']);
+    const ss=idx(['start','start_date','startdate']);
+    const du=idx(['due','target','target_date','duedate']);
+    const rl=idx(['release','release_date','released']);
+    const li=idx(['link','url']);
+    const no=idx(['notes','note','desc','description']);
+    const items=[];
+    for (let r=1;r<rows.length;r++){
+      const row=rows[r]; if (!row||!row.length) continue;
+      const title=row[ti]||''; if(!title.trim()) continue;
+      items.push({
+        quarter: row[qi]||'TBD',
+        title,
+        status: statusKey(row[si]||'Planned'),
+        area: row[ai]||'',
+        owner: row[oi]||'',
+        tags: (row[gi]||'').split(/;|,/).map(t=>t.trim()).filter(Boolean),
+        start: row[ss]||'',
+        due: row[du]||'',
+        release: row[rl]||'',
+        link: row[li]||'',
+        notes: row[no]||'',
+        checklist: []
+      });
+    }
+    return items;
+  }
+  function parseTSV(text){ return normalizeFromHeaderRow(parseSeparated(text,'\t').filter(r=>r[0] && !r[0].startsWith('#'))); }
+  function parseCSV(text){ return normalizeFromHeaderRow(parseSeparated(text,',').filter(r=>r[0] && !r[0].startsWith('#'))); }
+
+  // Markdown with sub-checklists & release date
+  function parseMarkdown(text){
+    const lines = text.split(/\r?\n/);
+    let currentQuarter='TBD';
+    let lastItem=null;
+    const items=[];
+    const topItemRe = /^-\s+\[(\s|x|~|>|in)\]\s*(.+)$/i;
+    const subItemRe = /^\s{2,}-\s+\[(\s|x)\]\s*(.+)$/i;
+    for (const raw of lines){
+      const line = raw.trimEnd();
+      if (!line.trim()) continue;
+      const h = line.match(/^#{2,3}\s+(.*)$/); // quarters as ##/###
+      if (h){ currentQuarter=h[1].trim(); lastItem=null; continue; }
+
+      // sub-checklist (must check raw for leading spaces)
+      const sub = raw.match(subItemRe);
+      if (sub && lastItem){
+        const done = sub[1].toLowerCase()==='x';
+        lastItem.checklist.push({ text: sub[2].trim(), done });
+        continue;
+      }
+
+      // top-level item
+      const m = line.match(topItemRe);
+      if (m){
+        const box = m[1].toLowerCase();
+        const rest = m[2].trim();
+        const parts = rest.split('|').map(s=>s.trim()).filter(Boolean);
+        const title = parts.shift() || '';
+        const meta = parts.reduce((acc, seg)=>{
+          const mm = seg.match(/^([a-z_]+)\s*:\s*(.+)$/i);
+          if (mm) acc[mm[1].toLowerCase()] = mm[2].trim();
+          return acc;
+        }, {});
+        const baseStatus = (box==='x') ? 'done' : (box==='~'||box==='>'||box==='in') ? 'inprogress' : 'planned';
+        const item = {
+          quarter: currentQuarter || 'TBD',
+          title,
+          status: baseStatus,
+          area: meta.area || '',
+          owner: meta.owner || '',
+          tags: (meta.tags||'').split(/;|,/).map(t=>t.trim()).filter(Boolean),
+          start: meta.start || '',
+          due: meta.due || meta.target || '',
+          release: meta.release || '',
+          link: meta.link || '',
+          notes: meta.notes || '',
+          checklist: []
+        };
+        items.push(item);
+        lastItem=item;
+      }
+    }
+    return items;
+  }
+
+  /* ---------- load & UI ---------- */
+  function effectiveStatus(it){
+    if (it.checklist && it.checklist.length){
+      const done = it.checklist.filter(c=>c.done).length;
+      if (done === it.checklist.length && it.checklist.length>0) return 'done';
+      if (done > 0) return 'inprogress';
+    }
+    return statusKey(it.status);
+  }
+
+  async function detectAndLoad(){
+    for (const src of PREFER_SOURCES){
+      try {
+        const res = await fetch(src.path, { cache:'no-store' });
+        if (!res.ok) continue;
+        const text = await res.text();
+        const items = src.type==='md'  ? parseMarkdown(text)
+                     : src.type==='tsv' ? parseTSV(text)
+                     : parseCSV(text);
+        CURRENT_SOURCE = src;
+        return items;
+      } catch(e){/* try next */ }
+    }
+    meta.innerHTML = `No data file found. Place <strong>roadmap.md</strong> next to this HTML or use the button below.`;
+    $('#fileFallback').classList.add('active');
+    return [];
+  }
+
+  function applyFilters(items){
+    const q = $('#searchBox').value.trim().toLowerCase();
+    const s = $('#statusFilter').value;
+    const a = $('#areaFilter').value;
+    return items.filter(it=>{
+      const eff = effectiveStatus(it);
+      if (s && eff !== statusKey(s)) return false;
+      if (a && (it.area||'').toLowerCase() !== a.toLowerCase()) return false;
+      if (q){
+        const blob = [it.title, it.area, it.owner, it.quarter, (it.tags||[]).join(' '), it.notes].join(' ').toLowerCase();
+        if (!blob.includes(q)) return false;
+      }
+      return true;
+    });
+  }
+
+  function render(items){
+    const root = $('#root'); root.innerHTML='';
+    if (!items.length){ root.innerHTML = `<div class="empty-state">No items to display with current filters.</div>`; return; }
+
+    // area options
+    const areas = Array.from(new Set(ALL_ITEMS.map(i=>(i.area||'').trim()).filter(Boolean))).sort();
+    const areaSel = $('#areaFilter');
+    const currentArea = areaSel.value;
+    areaSel.innerHTML = `<option value="">All areas</option>` + areas.map(a=>`<option ${a===currentArea?'selected':''}>${esc(a)}</option>`).join('');
+
+    // group & sort
+    const groups = groupBy(items, it=>it.quarter || 'TBD');
+    const quarters = Array.from(groups.keys()).sort((a,b)=> quarterSortValue(a)-quarterSortValue(b));
+
+    for (const q of quarters){
+      const group = groups.get(q).slice().sort((a,b)=>{
+        const order = { inprogress:0, planned:1, onhold:2, done:3 };
+        const sa=order[effectiveStatus(a)] ?? 9, sb=order[effectiveStatus(b)] ?? 9;
+        if (sa!==sb) return sa-sb;
+        return (a.due||'').localeCompare(b.due||'');
+      });
+
+      const card = document.createElement('section');
+      card.className='quarter-card';
+      card.innerHTML = `
+        <div class="quarter-title">
+          <h2>${esc(q)}</h2>
+          <div class="quarter-meta">${group.length} item${group.length>1?'s':''}</div>
+        </div>
+      `;
+
+      for (const it of group){
+        const eff = effectiveStatus(it);
+        const chipStatus = `status-${eff}`;
+        const linkOpen = it.link ? `<a href="${esc(it.link)}" target="_blank" rel="noopener noreferrer">` : '';
+        const linkClose = it.link ? `</a>` : '';
+        const when = (it.start||it.due) ? `<span class="chip" title="Dates">${it.start?fmtDate(it.start):''}${it.start&&it.due?' → ':''}${it.due?fmtDate(it.due):''}</span>` : '';
+        const release = it.release ? `<span class="chip release" title="Release date">🎉 ${fmtDate(it.release)}</span>` : '';
+        const tags = (it.tags||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join('');
+        const hasChecklist = it.checklist && it.checklist.length>0;
+        const done = hasChecklist ? it.checklist.filter(c=>c.done).length : 0;
+        const total = hasChecklist ? it.checklist.length : 0;
+        const pct = hasChecklist ? Math.round(done/total*100) : 0;
+
+        const el = document.createElement('article');
+        el.className='item';
+        el.innerHTML = `
+          <div class="item-title">${linkOpen}${esc(it.title)}${linkClose}</div>
+          <div class="item-line">
+            <span class="chip ${chipStatus}" title="Status">${eff.replace(/^./,c=>c.toUpperCase())}</span>
+            ${release}
+            ${it.area ? `<span class="chip" title="Area">${esc(it.area)}</span>` : ''}
+            ${it.owner ? `<span class="chip" title="Owner">👤 ${esc(it.owner)}</span>` : ''}
+            ${when}
+          </div>
+          ${ (it.tags&&it.tags.length) ? `<div class="chips">${tags}</div>` : '' }
+          ${ it.notes ? `<div class="notes">${esc(it.notes)}</div>` : '' }
+          ${ hasChecklist ? `
+            <div class="progress" aria-label="Checklist progress">
+              <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+            </div>
+            <details class="checklist">
+              <summary>Checklist (${done}/${total})</summary>
+              <ul class="checklist-list">
+                ${it.checklist.map(c=>`<li class="${c.done?'done':''}">${c.done?'✓':'○'} ${esc(c.text)}</li>`).join('')}
+              </ul>
+            </details>
+          ` : '' }
+        `;
+        card.appendChild(el);
+      }
+      root.appendChild(card);
+    }
+  }
+
+  // events
+  $('#searchBox').addEventListener('input', ()=>render(applyFilters(ALL_ITEMS)));
+  $('#statusFilter').addEventListener('change', ()=>render(applyFilters(ALL_ITEMS)));
+  $('#areaFilter').addEventListener('change', ()=>render(applyFilters(ALL_ITEMS)));
+  $('#btnClearFilters').addEventListener('click', ()=>{
+    $('#searchBox').value=''; $('#statusFilter').value=''; $('#areaFilter').value=''; render(applyFilters(ALL_ITEMS));
+  });
+
+  // local file fallback
+  const fileInput = $('#fileInput');
+  fileInput?.addEventListener('change', async (ev)=>{
+    const f = ev.target.files?.[0]; if (!f) return;
+    const text = await f.text(); const name=f.name.toLowerCase();
+    CURRENT_SOURCE = { path:f.name, type: name.endsWith('.csv')?'csv': name.endsWith('.tsv')||name.endsWith('.txt')?'tsv':'md' };
+    ALL_ITEMS = CURRENT_SOURCE.type==='md' ? parseMarkdown(text) : CURRENT_SOURCE.type==='tsv' ? parseTSV(text) : parseCSV(text);
+    $('#metaLine').textContent = `Loaded ${f.name} • ${ALL_ITEMS.length} items`;
+    render(applyFilters(ALL_ITEMS));
+  });
+
+  // initial load (no auto-refresh / no reload button)
+  (async()=>{ ALL_ITEMS = await detectAndLoad(); render(applyFilters(ALL_ITEMS)); })();
+  </script>
+</body>
+</html>
