@@ -1,10 +1,13 @@
-## TBD
+## Inprogress
 
 - [ ] Save visual → short‑form video export (30s) with destination presets | area: Video | owner: TBD | tags: video;export;social | release: TBD | notes: Phase 1 saves locally; later phases add social auto‑sharing.
-  - [ ] 30‑second duration cap
-  - [ ] Destination‑specific encoding/aspect presets (TikTok, YouTube Shorts, Instagram Reels)
-  - [ ] Local save (Phase 1)
+  - [x] 30‑second duration cap
+  - [x] Destination‑specific encoding/aspect presets
+  - [x] Local save (Phase 1)
   - [ ] Social network auto‑share (Phase 2)
+  - [ ] Get SoundClouds approval to also save audio (muted by default due to licensing)
+
+## TBD
 
 - [ ] User created visuals with phased sharing | area: Visuals | owner: TBD | tags: creation;sharing;community;agents | release: TBD | notes: Manual step uses a user‑chosen agent to upload required context files.
   - [ ] Local Only mode (store & render locally; no network) (Phase 1)
@@ -40,7 +43,7 @@
   - [ ] Changelogs and roadmap page
 
 - [ ] Privacy, consent & compliance baseline | area: Compliance | owner: TBD | tags: gdpr;ccpa;privacy | release: TBD | notes: User rights and transparent processing.
-  - [ ] Privacy policy and Terms of Service
+  - [x] Privacy policy and Terms of Service
   - [ ] Cookie/telemetry consent and settings
   - [ ] Data subject requests (export/delete)
   - [ ] DPIA and records of processing

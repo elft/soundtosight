@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>VVavy - Audio Visualizer | Transform Music into Visual Art</title>
+    <title>VVavy - Free Live Audio Visualizer | Transform Music into Visual Art</title>
     <meta name="description"
         content="Experience music like never before with VVavy - a free, real-time audio visualizer that transforms sound into mesmerizing visual art. Upload MP3s, search SoundCloud or use your microphone for stunning audio-reactive visuals.">
     <meta name="keywords"
@@ -96,6 +96,15 @@
                             type="button" aria-label="Toggle visual browser" aria-pressed="false">
                             Search Visuals
                         </button>
+                        <button id="exportWidgetToggleBtn" class="player-btn player-btn--text export-toggle"
+                            type="button" aria-label="Toggle export controls" aria-pressed="false">
+                            Export Visual
+                        </button>
+                        <a class="player-btn player-btn--text export-toggle" href="/roadmap.html"
+                            type="button" aria-label="Toggle export controls" aria-pressed="false"
+                            target="_blank" rel="noopener noreferrer">
+                            Roadmap
+                        </a>
                     </div>
                 </div>
             </div>
@@ -129,6 +138,77 @@
                 </button>
             </div>
         </div>
+    </div>
+
+    <aside id="exportWidget" class="export-widget hidden" aria-hidden="true">
+        <div class="export-widget__inner">
+            <header class="export-widget__header">
+                <h2 class="export-widget__title">Export Visual</h2>
+                <button type="button" id="exportWidgetCollapseBtn" class="export-widget__collapse"
+                    aria-label="Collapse export controls" aria-pressed="false" aria-hidden="true" tabindex="-1">
+                    <span aria-hidden="true">▾</span>
+                </button>
+                <button type="button" id="exportWidgetCloseBtn" class="export-widget__close"
+                    aria-label="Hide export controls">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </header>
+            <section class="export-widget__body">
+                <div class="export-widget__field">
+                    <label for="exportPresetSelect">Preset</label>
+                    <select id="exportPresetSelect" aria-describedby="exportPresetSummary"></select>
+                    <p id="exportPresetSummary" class="export-widget__hint"></p>
+                </div>
+                <div class="export-widget__field export-widget__field--split">
+                    <div class="export-widget__field">
+                        <label for="exportFpsSelect">Frame rate</label>
+                        <select id="exportFpsSelect">
+                            <option value="24">24</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                            <option value="60" selected>60</option>
+                        </select>
+                    </div>
+                    <div class="export-widget__field">
+                        <label for="exportDurationInput">Duration (seconds)</label>
+                        <input type="number" id="exportDurationInput" min="5" max="30" step="1" value="30">
+                    </div>
+                </div>
+                <div class="export-widget__field">
+                    <label for="exportFilenameInput">File name</label>
+                    <input type="text" id="exportFilenameInput" placeholder="vvavy-visual">
+                    <p class="export-widget__hint">Extension added automatically</p>
+                </div>
+                <div class="export-widget__field export-widget__field--checkbox">
+                    <label class="export-widget__checkbox">
+                        <input type="checkbox" id="exportWatermarkCheckbox" checked>
+                        <span>Add watermark</span>
+                    </label>
+                </div>
+                <div class="export-widget__status" id="exportStatusLabel" aria-live="polite"></div>
+                <p class="export-widget__notice" role="note">
+                    By exporting you confirm you hold the necessary rights to the audio and release VVavy from any liability.
+                </p>
+                <div class="export-widget__countdown" id="exportCountdownRow" hidden>
+                    <span class="export-widget__countdown-label">Time remaining</span>
+                    <span id="exportTimeRemainingLabel" class="export-widget__countdown-value">0s</span>
+                </div>
+                <div class="export-widget__actions" data-role="export-controls">
+                    <button type="button" id="exportStartBtn" class="export-action-btn export-action-btn--start">
+                        Start Export
+                    </button>
+                    <button type="button" id="exportStopBtn"
+                        class="export-action-btn export-action-btn--stop hidden">Stop Export</button>
+                </div>
+            </section>
+        </div>
+    </aside>
+
+    <div id="exportMiniStatus" class="export-mini-status" aria-hidden="true">
+        <span id="exportMiniTimeLabel" class="export-mini-status__time">0s</span>
+        <button type="button" id="exportMiniStopBtn" class="export-mini-status__stop" aria-label="Stop export">
+            Stop
+        </button>
     </div>
 
     <!-- Selection Hub -->

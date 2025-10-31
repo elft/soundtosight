@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -7,53 +8,181 @@
   <meta name="theme-color" content="#060b16" />
   <link rel="icon" href="/images/vvavy_favicon_256.png" />
   <style>
-    :root{
-      --bg:#0c0812;
-      --text:#f4f2ff;
-      --muted:rgba(255,255,255,0.6);
-      --edge:rgba(119,41,83,0.45);
-      --accent:#ffbe98;
-      --accent-soft:rgba(255,190,152,0.18);
-      --card-bg:rgba(28,18,40,0.78);
-      --card-border:rgba(119,41,83,0.45);
+    :root {
+      --bg: #0c0812;
+      --text: #f4f2ff;
+      --muted: rgba(255, 255, 255, 0.6);
+      --edge: rgba(119, 41, 83, 0.45);
+      --accent: #ffbe98;
+      --accent-soft: rgba(255, 190, 152, 0.18);
+      --card-bg: rgba(28, 18, 40, 0.78);
+      --card-border: rgba(119, 41, 83, 0.45);
     }
-    html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 "Inter","Segoe UI",system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
-    .wrap{max-width:960px;margin:0 auto;padding:48px 24px 96px;backdrop-filter:blur(12px)}
-    .brand{display:flex;gap:12px;align-items:center;margin-bottom:18px}
-    .brand img{width:36px;height:36px;border-radius:4px;box-shadow:0 10px 32px rgba(0,0,0,0.45)}
-    h1,h2,h3{color:var(--accent);margin:28px 0 10px;line-height:1.25}
-    h1{font-size:2.25rem}
-    h2{font-size:1.35rem}
-    h3{font-size:1.05rem;color:var(--muted)}
-    p,li{color:var(--text);margin:0 0 14px}
-    a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:0;padding:20px 22px;box-shadow:0 14px 34px rgba(0,0,0,0.35)}
-    .grid{display:grid;gap:18px}
-    .muted{color:var(--muted)}
-    .pill{display:inline-block;border:1px solid var(--card-border);border-radius:0;padding:6px 12px;font-size:.85rem;color:var(--muted);background:var(--card-bg)}
-    .toc a{display:block;padding:8px 0}
-    .hr{height:1px;background:linear-gradient(90deg,transparent,var(--edge),transparent);margin:30px 0}
-    .notice{border-left:3px solid var(--accent);padding:12px 14px;background:var(--accent-soft);border-radius:0}
-    .callout-ok{border-left-color:rgba(74,222,128,0.9)}
-    .callout-warn{border-left-color:rgba(251,191,36,0.9)}
-    .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(12,8,18,0.9);border:1px solid var(--card-border);border-radius:0;padding:2px 6px}
-    .footer{margin-top:48px;color:var(--muted);font-size:.9rem}
-    .back{display:inline-block;margin-top:22px;border:1px solid var(--card-border);border-radius:0;padding:10px 18px;background:var(--card-bg)}
-    @media (prefers-color-scheme: light){
-      body{background:#0b1224;color:#e9eef5}
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 96px;
+      backdrop-filter: blur(12px)
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px
+    }
+
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45)
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--accent);
+      margin: 28px 0 10px;
+      line-height: 1.25
+    }
+
+    h1 {
+      font-size: 2.25rem
+    }
+
+    h2 {
+      font-size: 1.35rem
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      color: var(--muted)
+    }
+
+    p,
+    li {
+      color: var(--text);
+      margin: 0 0 14px
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none
+    }
+
+    a:hover {
+      text-decoration: underline
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 0;
+      padding: 20px 22px;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35)
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px
+    }
+
+    .muted {
+      color: var(--muted)
+    }
+
+    .pill {
+      display: inline-block;
+      border: 1px solid var(--card-border);
+      border-radius: 0;
+      padding: 6px 12px;
+      font-size: .85rem;
+      color: var(--muted);
+      background: var(--card-bg)
+    }
+
+    .toc a {
+      display: block;
+      padding: 8px 0
+    }
+
+    .hr {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--edge), transparent);
+      margin: 30px 0
+    }
+
+    .notice {
+      border-left: 3px solid var(--accent);
+      padding: 12px 14px;
+      background: var(--accent-soft);
+      border-radius: 0
+    }
+
+    .callout-ok {
+      border-left-color: rgba(74, 222, 128, 0.9)
+    }
+
+    .callout-warn {
+      border-left-color: rgba(251, 191, 36, 0.9)
+    }
+
+    .code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: rgba(12, 8, 18, 0.9);
+      border: 1px solid var(--card-border);
+      border-radius: 0;
+      padding: 2px 6px
+    }
+
+    .footer {
+      margin-top: 48px;
+      color: var(--muted);
+      font-size: .9rem
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 22px;
+      border: 1px solid var(--card-border);
+      border-radius: 0;
+      padding: 10px 18px;
+      background: var(--card-bg)
+    }
+
+    @media (prefers-color-scheme: light) {
+      body {
+        background: #0b1224;
+        color: #e9eef5
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <div class="brand">
       <img src="/images/vvavy_favicon_256.png" alt="VVavy" />
-      <span class="pill">Last updated: October 29, 2025</span>
+      <span class="pill">Last updated: October 31, 2025</span>
     </div>
     <h1>Terms of Service &amp; Privacy Notice</h1>
-    <p class="muted">Welcome to VVavy (“<strong>VVavy</strong>”, “we”, “us”). This page contains our Terms of Service and Privacy Notice. By using VVavy, you agree to these terms.</p>
+    <p class="muted">Welcome to VVavy (“<strong>VVavy</strong>”, “we”, “us”). This page contains our Terms of Service
+      and Privacy Notice. By using VVavy, you agree to these terms.</p>
 
     <div class="card toc">
       <h3>Quick navigation</h3>
@@ -68,88 +197,159 @@
     <section id="tos">
       <h2>1) Terms of Service</h2>
       <h3>1.1 About the Service</h3>
-      <p>VVavy is an experimental, web-based audio visualization experience. It transforms audio input into real-time visuals for personal enjoyment. The Service is provided “as-is.”</p>
+      <p>VVavy is an experimental, web-based audio visualization experience. It transforms audio input into real-time
+        visuals for personal enjoyment. The Service is provided “as-is.”</p>
 
       <h3>1.2 Eligibility</h3>
-      <p>You must be at least 13 (or the minimum age in your jurisdiction). If you use VVavy for an organization, you confirm you’re authorized to accept these terms.</p>
+      <p>You must be at least 13 (or the minimum age in your jurisdiction). If you use VVavy for an organization, you
+        confirm you’re authorized to accept these terms.</p>
 
       <h3>1.3 Personal, Non-Commercial Use</h3>
-      <p>Use VVavy for personal, non-commercial purposes unless you have our prior written permission. Do not resell, sublicense, rent, or lease the Service or its outputs.</p>
+      <p>Use VVavy for personal, non-commercial purposes unless you have our prior written permission. Do not resell,
+        sublicense, rent, or lease the Service or its outputs.</p>
 
       <h3>1.4 Your Audio Content</h3>
-      <p>You are responsible for any audio you supply. Ensure you hold all necessary rights for any use (e.g., public performance, synchronization if applicable).</p>
+      <p>You are responsible for any audio you supply. Ensure you hold all necessary rights for any use (e.g., public
+        performance, synchronization if applicable).</p>
 
       <h3>1.5 Health & Safety</h3>
-      <p>Visuals may include flashing, motion, or intense color. Stop use if you experience discomfort. Use in a safe environment and take breaks.</p>
+      <p>Visuals may include flashing, motion, or intense color. Stop use if you experience discomfort. Use in a safe
+        environment and take breaks.</p>
 
       <h3>1.6 Modifications & Availability</h3>
       <p>We may modify, suspend, or discontinue parts or all of VVavy at any time.</p>
 
       <h3>1.7 No Warranties</h3>
-      <p>VVavy is provided “AS IS” and “AS AVAILABLE,” without warranties of any kind, express or implied, including merchantability, fitness for a particular purpose, and non-infringement.</p>
+      <p>
+        THE SERVICE IS PROVIDED ON AN <strong>“AS IS” AND “AS AVAILABLE”</strong> BASIS. VVAVY <strong>DISCLAIMS ALL
+          WARRANTIES</strong>, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+        PURPOSE, NON-INFRINGEMENT, QUIET ENJOYMENT, AND ANY WARRANTIES ARISING OUT OF COURSE OF DEALING OR USAGE OF
+        TRADE. VVAVY DOES NOT WARRANT THAT THE SERVICE WILL BE <strong>ERROR-FREE, UNINTERRUPTED, SECURE, OR
+          COMPATIBLE</strong> WITH THIRD-PARTY PLATFORMS, OR THAT <strong>EXPORTS</strong> WILL BE ACCEPTED BY ANY
+        DESTINATION PLATFORM.
+      </p>
 
       <h3>1.8 Limitation of Liability</h3>
-      <p>To the maximum extent permitted by law, VVavy and its contributors are not liable for indirect, incidental, special, consequential, exemplary, or punitive damages, or for lost profits, data, or goodwill.</p>
+      <p>
+        TO THE FULLEST EXTENT PERMITTED BY LAW, VVAVY AND ITS CONTRIBUTORS WILL NOT BE LIABLE FOR ANY <strong>INDIRECT,
+          INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE</strong> DAMAGES, OR FOR <strong>LOSS OF PROFITS,
+          REVENUE, GOODWILL, DATA, OR USE</strong>, EVEN IF ADVISED OF THE POSSIBILITY. TO THE EXTENT PERMITTED BY LAW,
+        VVAVY’S TOTAL LIABILITY FOR ALL CLAIMS RELATING TO THE SERVICE IN ANY 12-MONTH PERIOD WILL NOT EXCEED THE
+        GREATER OF <strong>USD $100</strong> OR THE AMOUNTS YOU PAID TO VVAVY FOR THE SERVICE IN THAT PERIOD (IF ANY).
+        THESE LIMITATIONS APPLY REGARDLESS OF THE LEGAL THEORY AND EVEN IF A REMEDY FAILS OF ITS ESSENTIAL PURPOSE.
+        <strong>Nothing in this Section limits liability</strong> for fraud, willful misconduct, or injury where such
+        limitation is prohibited by law.
+      </p>
 
-      <h3>1.9 Indemnification</h3>
-      <p>You agree to indemnify and hold us harmless from claims arising from your use of VVavy or your breach of these terms.</p>
+
+      <h3 id="release">1.8A Release; Assumption of Risk</h3>
+      <p>
+        To the maximum extent permitted by law, you <strong>release and discharge</strong> VVavy from any and all claims
+        and liabilities arising out of or relating to your use of the Service, including exposure to <em>flashing or
+          intense visuals</em>, motion, or color effects, and any actions you take with your exports. You understand
+        that using audio-reactive visuals can present <strong>health and safety risks</strong> (e.g., photosensitivity,
+        motion sickness, disorientation), and you <strong>assume all such risks</strong> and agree to use the Service
+        responsibly and in a safe environment.
+      </p>
+
 
       <h3>1.10 Governing Law</h3>
-      <p>Unless mandatory law says otherwise, these terms are governed by the laws of the owner’s domicile, and disputes are heard in those courts.</p>
+      <p>Unless mandatory law says otherwise, these terms are governed by the laws of the owner’s domicile, and disputes
+        are heard in those courts.</p>
 
       <h3>1.11 Severability & Changes</h3>
-      <p>If any provision is unenforceable, the rest remain in effect. We may update these terms; continued use means you accept the changes.</p>
+      <p>If any provision is unenforceable, the rest remain in effect. We may update these terms; continued use means
+        you accept the changes.</p>
 
-            <h3 id="exports">1.12 Exports, Synchronization & Music Licensing</h3>
-      <p><strong>Exports that include audio:</strong> If you choose to export visuals together with audio, you are solely responsible for obtaining and maintaining <em>all</em> rights necessary for that use, including without limitation synchronization and, where applicable, master use licenses, public performance rights, and any platform-specific clearances. You must not include any audio in an export unless you are the rights holder or have all required licenses for that specific pairing of audio and visuals.</p>
+      <h3 id="exports">1.12 Exports, Synchronization & Music Licensing</h3>
+      <p><strong>Exports that include audio:</strong> If you choose to export visuals together with audio, you are
+        solely responsible for obtaining and maintaining <em>all</em> rights necessary for that use, including without
+        limitation synchronization and, where applicable, master use licenses, public performance rights, and any
+        platform-specific clearances. You must not include any audio in an export unless you are the rights holder or
+        have all required licenses for that specific pairing of audio and visuals.</p>
       <ul>
-        <li><strong>Default behavior:</strong> Exports may be muted by default when created from third-party streams or where licensing status is unknown.</li>
-        <li><strong>Platform rules:</strong> You agree to comply with the upload and music policies of destinations, and you acknowledge that platforms may block or remove your exports.</li>
-        <li><strong>Geo/territory:</strong> You are responsible for territorial restrictions and any collecting-society obligations that apply to your export.</li>
+        <li><strong>Default behavior:</strong> Exports may be muted by default when created from third-party streams or
+          where licensing status is unknown.</li>
+        <li><strong>Platform rules:</strong> You agree to comply with the upload and music policies of destinations, and
+          you acknowledge that platforms may block or remove your exports.</li>
+        <li><strong>Geo/territory:</strong> You are responsible for territorial restrictions and any collecting-society
+          obligations that apply to your export.</li>
       </ul>
 
       <h3 id="user-reps">1.13 Your Representations & Warranties (Audio & Likeness)</h3>
-      <p>You represent and warrant that: (a) you own or have obtained all permissions, licenses, and clearances necessary to upload audio, pair it with visuals, and export it; (b) your use and exports do not infringe or misappropriate any copyright, trademark, trade secret, or other right; (c) you will not use the name, image, voice, or likeness of any person without consent, including publicity and privacy rights recognized under applicable law; and (d) your use complies with all laws, rules, and platform policies.</p>
+      <p>You represent and warrant that: (a) you own or have obtained all permissions, licenses, and clearances
+        necessary to upload audio, pair it with visuals, and export it; (b) your use and exports do not infringe or
+        misappropriate any copyright, trademark, trade secret, or other right; (c) you will not use the name, image,
+        voice, or likeness of any person without consent, including publicity and privacy rights recognized under
+        applicable law; and (d) your use complies with all laws, rules, and platform policies.</p>
 
       <h3 id="prohibited">1.14 Prohibited Uses (Exports & Audio)</h3>
       <ul>
         <li>No uploading or exporting audio you do not have rights to synchronize.</li>
-        <li>No “stream-ripping”, downloading, or making permanent copies of third-party streams except as expressly permitted by rights holders.</li>
+        <li>No “stream-ripping”, downloading, or making permanent copies of third-party streams except as expressly
+          permitted by rights holders.</li>
         <li>No removing or altering attribution, watermarks, identifiers, or rights-management information.</li>
       </ul>
 
       <h3 id="dmca">1.15 Copyright Policy (DMCA)</h3>
-      <p>We respect intellectual-property rights and will respond to clear notices of alleged infringement consistent with 17 U.S.C. §512. We may remove or disable access to material alleged to be infringing and may terminate repeat infringers.</p>
-      <p><strong>Submit a DMCA notice</strong> to our designated agent with: (1) the work claimed to be infringed; (2) identification of the material or link to be removed; (3) contact information; (4) a statement of good-faith belief; (5) a statement under penalty of perjury that the notice is accurate and you are authorized; and (6) a physical or electronic signature. Counter-notices must comply with §512(g).</p>
+      <p>We respect intellectual-property rights and will respond to clear notices of alleged infringement consistent
+        with 17 U.S.C. §512. We may remove or disable access to material alleged to be infringing and may terminate
+        repeat infringers.</p>
+      <p><strong>Submit a DMCA notice</strong> to our designated agent with: (1) the work claimed to be infringed; (2)
+        identification of the material or link to be removed; (3) contact information; (4) a statement of good-faith
+        belief; (5) a statement under penalty of perjury that the notice is accurate and you are authorized; and (6) a
+        physical or electronic signature. Counter-notices must comply with §512(g).</p>
       <div class="notice">
         <p><strong>Designated Agent for DMCA Notices</strong><br>
-        Name: VVavy DMCA Agent<br>
-        Email: <a href="mailto:vvavy.io@gmail.com">vvavy.io@gmail.com</a><br>
-        Address: <em>[Insert physical mailing address]</em></p>
+          Name: VVavy DMCA Agent<br>
+          Email: <a href="mailto:vvavy.io@gmail.com">vvavy.io@gmail.com</a><br>
+          Address: <em>[Insert physical mailing address]</em></p>
       </div>
 
       <h3 id="repeat">1.16 Repeat-Infringer Policy</h3>
-      <p>Accounts that receive multiple valid notices or otherwise repeatedly infringe may have features limited (including export and streaming) or accounts terminated, at our discretion.</p>
+      <p>Accounts that receive multiple valid notices or otherwise repeatedly infringe may have features limited
+        (including export and streaming) or accounts terminated, at our discretion.</p>
 
       <h3 id="publicity">1.17 Right of Publicity & Likeness</h3>
-      <p>Using a person’s name, image, voice, or likeness (including in your exports) may require consent. You must obtain and keep any required permissions or releases. You may not upload or export content that exploits another person’s identity without authorization, consistent with rights recognized under Minnesota law.</p>
+      <p>Using a person’s name, image, voice, or likeness (including in your exports) may require consent. You must
+        obtain and keep any required permissions or releases. You may not upload or export content that exploits another
+        person’s identity without authorization, consistent with rights recognized under Minnesota law.</p>
 
       <h3 id="no-legal-advice">1.18 No Legal Advice</h3>
-      <p>VVavy does not provide legal advice. You are responsible for your own compliance and for obtaining legal counsel regarding licensing, rights-clearance, privacy, and publicity issues related to your audio and exports.</p>
+      <p>VVavy does not provide legal advice. You are responsible for your own compliance and for obtaining legal
+        counsel regarding licensing, rights-clearance, privacy, and publicity issues related to your audio and exports.
+      </p>
 
       <h3 id="no-reverse">1.19 No Reverse Engineering & Client-Side Tampering</h3>
-      <p>Except to the limited extent expressly permitted by applicable law (and then only after providing us prior written notice), you must not do any of the following in relation to VVavy, its client-side code, or any associated services/APIs:</p>
+      <p>Except to the limited extent expressly permitted by applicable law (and then only after providing us prior
+        written notice), you must not do any of the following in relation to VVavy, its client-side code, or any
+        associated services/APIs:</p>
       <ul>
-        <li><strong>Reverse engineering:</strong> reverse engineer, decompile, disassemble, or otherwise attempt to derive source code, algorithms, models, audio-analysis pipelines, visualizers/shaders, or any non-public interfaces.</li>
-        <li><strong>Circumvention:</strong> bypass, defeat, or disable any access control, authentication, rate limiting, watermarking, origin checks, DRM, or other technical protection measures (including prohibitions under 17 U.S.C. §1201).</li>
-        <li><strong>Tampering:</strong> intercept, modify, inject, or tamper with client-side code, network traffic, local storage, or runtime execution (e.g., devtools overrides, user scripts, MITM proxies) to alter behavior, disable limits, remove watermarks, or access non-public features or data.</li>
-        <li><strong>Unauthorized automation/scraping:</strong> crawl, scrape, spider, frame, mirror, bulk export, or harvest any part of the Service or its outputs except through documented features and permitted public APIs.</li>
-        <li><strong>Derivative works & redistribution:</strong> copy, adapt, or create derivative works from VVavy’s code, designs, or assets, or redistribute any part of the client bundle, except as explicitly allowed by us in writing.</li>
-        <li><strong>Abuse of limits:</strong> use bots or automated means to create accounts/sessions, to record streams, or to evade quotas, geographic/territorial restrictions, or usage rules.</li>
-        <li><strong>Security testing:</strong> perform vulnerability scanning, fuzzing, load testing, or other security testing without our prior written authorization. For coordinated disclosure, contact <a href="mailto:vvavy.io@gmail.com">vvavy.io@gmail.com</a>.</li>
-        <li><strong>Attribution removal:</strong> remove, obscure, or alter any attribution, copyright notice, watermark, or rights-management information displayed by the Service or in exports.</li>
+        <li><strong>Reverse engineering:</strong> reverse engineer, decompile, disassemble, or otherwise attempt to
+          derive source code, algorithms, models, audio-analysis pipelines, visualizers/shaders, or any non-public
+          interfaces.</li>
+        <li><strong>Circumvention:</strong> bypass, defeat, or disable any access control, authentication, rate
+          limiting, watermarking, origin checks, DRM, or other technical protection measures (including prohibitions
+          under 17 U.S.C. §1201).</li>
+        <li><strong>Tampering:</strong> intercept, modify, inject, or tamper with client-side code, network traffic,
+          local storage, or runtime execution (e.g., devtools overrides, user scripts, MITM proxies) to alter behavior,
+          disable limits, remove watermarks, or access non-public features or data.</li>
+        <li><strong>Unauthorized automation/scraping:</strong> crawl, scrape, spider, frame, mirror, bulk export, or
+          harvest any part of the Service or its outputs except through documented features and permitted public APIs.
+        </li>
+        <li><strong>Derivative works & redistribution:</strong> copy, adapt, or create derivative works from VVavy’s
+          code, designs, or assets, or redistribute any part of the client bundle, except as explicitly allowed by us in
+          writing.</li>
+        <li><strong>Abuse of limits:</strong> use bots or automated means to create accounts/sessions, to record
+          streams, or to evade quotas, geographic/territorial restrictions, or usage rules.</li>
+        <li><strong>Security testing:</strong> perform vulnerability scanning, fuzzing, load testing, or other security
+          testing without our prior written authorization. For coordinated disclosure, contact <a
+            href="mailto:vvavy.io@gmail.com">vvavy.io@gmail.com</a>.</li>
+        <li><strong>Attribution removal:</strong> remove, obscure, or alter any attribution, copyright notice,
+          watermark, or rights-management information displayed by the Service or in exports.</li>
       </ul>
-      <p>Any unauthorized access, interference, or circumvention may violate civil and criminal laws (including the Computer Fraud and Abuse Act) and is grounds for suspension or termination and other remedies.</p>
+      <p>Any unauthorized access, interference, or circumvention may violate civil and criminal laws (including the
+        Computer Fraud and Abuse Act) and is grounds for suspension or termination and other remedies.</p>
 
     </section>
 
@@ -157,39 +357,50 @@
 
     <section id="sc">
       <h2>2) SoundCloud Streaming Rules</h2>
-      <p class="notice">When you visualize audio sourced from SoundCloud, the following terms apply in addition to SoundCloud’s own API Terms and User Terms. VVavy is not affiliated with or endorsed by SoundCloud.</p>
+      <p class="notice">When you visualize audio sourced from SoundCloud, the following terms apply in addition to
+        SoundCloud’s own API Terms and User Terms. VVavy is not affiliated with or endorsed by SoundCloud.</p>
 
       <h3>2.1 Access & Availability</h3>
       <ul>
-        <li>VVavy accesses SoundCloud audio solely via SoundCloud’s public APIs and only for real-time, client-side visualization.</li>
-        <li>Playback is attempted only for tracks where the uploader has enabled API playback. If a track is removed or API access is disabled, availability will cease promptly.</li>
+        <li>VVavy accesses SoundCloud audio solely via SoundCloud’s public APIs and only for real-time, client-side
+          visualization.</li>
+        <li>Playback is attempted only for tracks where the uploader has enabled API playback. If a track is removed or
+          API access is disabled, availability will cease promptly.</li>
         <li>SoundCloud Go-only content is not accessible via VVavy.</li>
       </ul>
 
       <h3>2.2 Strictly No Downloading, Caching, or “Stream Ripping”</h3>
       <ul>
-        <li><strong>No saving, downloading, recording, ripping, or making permanent copies</strong> of SoundCloud audio.</li>
-        <li>Only ephemeral, session-bound buffering is permitted to the extent necessary for playback; all such data is discarded when the session ends.</li>
+        <li><strong>No saving, downloading, recording, ripping, or making permanent copies</strong> of SoundCloud audio.
+        </li>
+        <li>Only ephemeral, session-bound buffering is permitted to the extent necessary for playback; all such data is
+          discarded when the session ends.</li>
       </ul>
 
       <h3>2.3 Exports & “Muted by Default” Rule</h3>
       <ul>
-        <li>When you export visuals that were created from SoundCloud streams, exports are <strong>muted by default</strong>.</li>
-        <li>Embedding SoundCloud audio in an export is permitted only where you are the rights holder (or have all required rights, including synchronization) for the audio.</li>
+        <li>When you export visuals that were created from SoundCloud streams, exports are <strong>muted by
+            default</strong>.</li>
+        <li>Embedding SoundCloud audio in an export is permitted only where you are the rights holder (or have all
+          required rights, including synchronization) for the audio.</li>
       </ul>
 
       <h3>2.4 Attribution & Backlink</h3>
       <ul>
-        <li>VVavy displays: (a) the SoundCloud uploader as the creator, (b) SoundCloud as the source, and (c) a visible link to the track’s SoundCloud permalink.</li>
+        <li>VVavy displays: (a) the SoundCloud uploader as the creator, (b) SoundCloud as the source, and (c) a visible
+          link to the track’s SoundCloud permalink.</li>
         <li>Where feasible, we use official SoundCloud components/buttons per their branding rules.</li>
       </ul>
 
       <h3>2.5 Prohibited Uses (SoundCloud)</h3>
       <ul>
-        <li>No use of SoundCloud audio to train or develop any AI/ML models; no creating fingerprints or similar identifiers for exploitation.</li>
-        <li>No scraping, webcasting/radio apps, or attempts to bypass territorial/time restrictions, rate limits, ads, or content protection.</li>
+        <li>No use of SoundCloud audio to train or develop any AI/ML models; no creating fingerprints or similar
+          identifiers for exploitation.</li>
+        <li>No scraping, webcasting/radio apps, or attempts to bypass territorial/time restrictions, rate limits, ads,
+          or content protection.</li>
         <li>No advertising/sponsorship wrapped around third-party SoundCloud content played via VVavy.</li>
-        <li>No use of SoundCloud trademarks or logos except as allowed by their branding rules; no implication of endorsement.</li>
+        <li>No use of SoundCloud trademarks or logos except as allowed by their branding rules; no implication of
+          endorsement.</li>
       </ul>
     </section>
 
@@ -197,7 +408,9 @@
 
     <section id="privacy">
       <h2>3) Privacy Notice</h2>
-      <p class="muted">This Privacy Notice explains what we process, why, for how long, your rights, and how to contact us. For SoundCloud-linked features, VVavy acts as an <strong>independent controller</strong> of any Personal Data we process through SoundCloud’s APIs.</p>
+      <p class="muted">This Privacy Notice explains what we process, why, for how long, your rights, and how to contact
+        us. For SoundCloud-linked features, VVavy acts as an <strong>independent controller</strong> of any Personal
+        Data we process through SoundCloud’s APIs.</p>
 
       <h3>3.1 What We Process</h3>
       <ul>
@@ -209,7 +422,8 @@
 
       <h3>3.2 Purposes & Legal Bases</h3>
       <ul>
-        <li><strong>Provide the Service:</strong> enable real-time visualization and lawful playback; show attribution/permalinks.</li>
+        <li><strong>Provide the Service:</strong> enable real-time visualization and lawful playback; show
+          attribution/permalinks.</li>
         <li><strong>Security & abuse prevention:</strong> protect against misuse and keep the Service available.</li>
         <li><strong>Compliance:</strong> meet SoundCloud API rules and applicable law.</li>
       </ul>
@@ -217,17 +431,24 @@
       <h3>3.3 Retention</h3>
       <ul>
         <li>We retain data only as long as necessary for the stated purposes.</li>
-        <li>On disconnect, SoundCloud-derived Personal Data is deleted within <strong>7 days</strong> (unless longer retention is legally required).</li>
+        <li>On disconnect, SoundCloud-derived Personal Data is deleted within <strong>7 days</strong> (unless longer
+          retention is legally required).</li>
       </ul>
 
       <h3>3.4 Security</h3>
-      <p>We implement technical and organizational measures appropriate to the risk (e.g., transport encryption, secret management, least-privilege access, and vulnerability remediation). If legally required, we will notify you and any relevant parties of a Personal Data breach.</p>
+      <p>We implement technical and organizational measures appropriate to the risk (e.g., transport encryption, secret
+        management, least-privilege access, and vulnerability remediation). If legally required, we will notify you and
+        any relevant parties of a Personal Data breach.</p>
 
       <h3>3.5 Your Rights</h3>
-      <p>Subject to local law, you may request access, correction, deletion, or restriction, and where applicable, object to processing or request portability. To exercise rights, contact <a href="mailto:vvavy.io@gmail.com">vvavy.io@gmail.com</a>. You may also lodge a complaint with your data protection authority.</p>
+      <p>Subject to local law, you may request access, correction, deletion, or restriction, and where applicable,
+        object to processing or request portability. To exercise rights, contact <a
+          href="mailto:vvavy.io@gmail.com">vvavy.io@gmail.com</a>. You may also lodge a complaint with your data
+        protection authority.</p>
 
       <h3>3.6 Children</h3>
-      <p>VVavy is not directed to children under 13 (or the minimum age in your jurisdiction). Do not use VVavy if you are under that age.</p>
+      <p>VVavy is not directed to children under 13 (or the minimum age in your jurisdiction). Do not use VVavy if you
+        are under that age.</p>
 
       <h3>3.7 Changes</h3>
       <p>We may update this Notice. Material changes will be reflected by updating the “Last updated” date above.</p>
@@ -237,16 +458,18 @@
 
     <section id="contact">
       <h2>4) Contact</h2>
-      <p>Terms or general questions: <a href="mailto:vvavy.io@gmail.com">vvavy.io@gmail.com</a><br/>
-         Project home: <a href="https://vvavy.io" target="_blank" rel="noopener">vvavy.io</a>
+      <p>Terms or general questions: <a href="mailto:vvavy.io@gmail.com">vvavy.io@gmail.com</a><br />
+        Project home: <a href="https://vvavy.io" target="_blank" rel="noopener">vvavy.io</a>
       </p>
       <a class="back" href="/">← Return to VVavy</a>
     </section>
 
     <div class="footer">
-      <p>© <span id="y"></span> VVavy. “SoundCloud” is a trademark of its respective owner. VVavy is not affiliated with or endorsed by SoundCloud.</p>
+      <p>© <span id="y"></span> VVavy. “SoundCloud” is a trademark of its respective owner. VVavy is not affiliated with
+        or endorsed by SoundCloud.</p>
     </div>
   </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
 </body>
+
 </html>
